@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Searchspring</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b9c50b62e0.js" crossorigin="anonymous"></script>
+
+
+    <style>
+        #return-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #3A23AD;
+            width: 50px;
+            height: 50px;
+            text-decoration: none;
+            -webkit-border-radius: 35px;
+            -moz-border-radius: 35px;
+            border-radius: 35px;
+            display: none;
+            -webkit-transition: all 0.3s linear;
+            -moz-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        }
+
+        #return-to-top i {
+            color: #fff;
+            position: relative;
+            left: 16px;
+            top: 13px;
+            font-size: 19px;
+            font-weight: bolder;
+            -webkit-transition: all 0.8s ease;
+            -moz-transition: all 0.8s ease;
+            -o-transition: all 0.8s ease;
+            transition: all 0.8s ease;
+        }
+
+        #return-to-top:hover {
+            background: #00CEE1;;
+        }
+
+        #return-to-top:hover i {
+            text-shadow: 2px 1px 2px #1C6EA4;
+            color: #fff;
+            top: 5px;
+        }
+
+        .strike {
+            text-decoration: line-through;
+        }
+
+        .btn {
+            background-color: white;
+            color: #3A23AD;
+            border-radius: 50%;
+            border: none;
+        }
+
+        .searchSpringNav {
+            background-color: #3A23AD;
+        }
+
+        .card {
+            transition: transform .2s;
+        }
+
+        .card:hover {
+            transform: scale(1.03);
+        }
+
+        .fas {
+            color: white;
+            transition: transform .2s ease-in-out;
+        }
+
+        .fas:hover {
+            transform: scale(1.16);
+            color: #00CEE1;
+        !important;
+        }
+
+        .page-link {
+            color: #3A23AD;
+        !important;
+        }
+
+        .page-link:hover {
+            color: #00CEE1;
+        }
+
+        #navHeader {
+            transition: transform .2s ease-in-out;
+            color: lightgrey;
+        }
+
+        #navHeader:hover {
+            color: #00CEE1;
+            transform: scale(1.05);
+        }
+
+        .searchSpringText {
+            color: #3A23AD;
+        }
+
+        .white {
+            color: white;
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+<nav class="navbar w-100 sticky-top searchSpringNav d-flex justify-content-center justify-content-xl-between
+">
+    <div id="navbarNav">
+        <a class="navbar-brand d-lg-block text-monospace align-self-sm-center" href="#"><h2 id="navHeader">Searchspring</h2></a>
+    </div>
+    <form action="#" method="get" class="form-inline" id="demoForm">
+        <input class="form-control" type="text" placeholder="Search.." id="search"
+               name="search" aria-label="Search"/>
+        <div class="d-flex justify-content-center justify-content-xl-between">
+            <button type="submit" class="btn button p-2 searchSpringNav d-flex justify-content-center"><i
+                    class="fas align-self-sm-center fa-search p-0 m-0"></i>
+            </button>
+        </div>
+    </form>
+</nav>
+<a href="" id="return-to-top"><i class="icon-chevron-up fa-lg"></i></a>
+
+<!--====================================End Of NavBar StART OF First Pagination======================================-->
+
+<div class="container">
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center mb-0 p-4" id="pagLi">
+            <li class="page-item disabled previous">
+                <a class="page-link paginationNumberPrevious" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            <li class="page-item disabled"><a class="page-link paginationNumber" href="#"></a></li>
+            <li class="page-item next">
+                <a class="page-link paginationNumberNext" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
+
+
+    <!--================End of First Pagination START OF Cards created dynamically by api call=========================-->
+
+    <div class="row ShoppingCards bg-white">
+
+    </div>
+
+
+    <!--==========================================START OF Last Pagination=============================================-->
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center mb-0 pb-4">
+            <li class="page-item disabled previous">
+                <a class="page-link paginationNumberPrevious" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            <li class="page-item disabled"><a class="page-link paginationNumber" href="#"></a></li>
+            <li class="page-item next">
+                <a class="page-link paginationNumberNext" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
+
+</div>
+
+<!--==================================================Start Of Scripts===============================================-->
+
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+<script>
+
+
+    function mediaQuery(){
+        if(window.matchMedia("(max-width: 600px)").matches){
+            document.getElementById("demoForm").classList.remove("form-inline")
+        }
+        else{
+            document.getElementById("demoForm").classList.add("form-inline")
+        }
+    }
+    mediaQuery();
+
+    function notEmptyLanding() {
+        $('#demoForm').submit();
+    }
+
+    var number = 1;
+    var paginationNumber;
+    var paginationNumbers = document.getElementsByClassName("paginationNumber");
+    for (let i = 0; i < paginationNumbers.length; i++) {
+        document.getElementsByClassName("paginationNumber")[i].innerHTML = number;
+    }
+
+    paginationNumber = number;
+
+
+    if (document.getElementById("search") == null) {
+        console.log("oops, null");
+    } else {
+        var searchString;
+        searchString = '';
+        var urlSearchString = window.location.href;
+        var url = new URL(urlSearchString);
+        var searchParam = url.searchParams.get("search");
+        if (searchParam != null) {
+            searchString = searchParam.replace(/,|,\s/g, ",+");
+        }
+
+        if (searchString === "") {
+            $('#demoForm').submit();
+        }
+        var firstRun = "http://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + 1;
+        $.ajax(firstRun).done(function (data) {
+            mediaQuery();
+
+            // Create the cards
+            var ShoppingCard = "";
+            // var pagination = "";
+            // pagination += '<li class="page-item disabled previous">' + '<a class="page-link paginationNumberPrevious" href="#" tabindex="-1" aria-disabled="true">Previous</a>\n' + ' </li>'
+            //
+            // for(let i =0; i < 5; i++ ){
+            //     pagination += '<li class="page-item apiCallNum"><a class="page-link paginationNumber" href="#">'+ (i + 1) +'</a></li>';
+            // }
+            // pagination += '<li class="page-item next">' + '<a class="page-link paginationNumberNext" href="#">Next</a>' + '</li>';
+            // console.log(pagination);
+
+
+            for (let i = 0; i < data.results.length; i++) {
+                var msrp = "";
+                // product has an “msrp” field
+                if (data.results[i].msrp != null || data.results[i].msrp !== undefined || data.results[i].msrp !== "") {
+                    // and it’s less than “price” field
+                    // console.log(data.results[i].msrp < data.results[i].price)
+                    var msrpNum = parseFloat(data.results[i].msrp);
+                    var priceNum = parseFloat(data.results[i].price);
+                    //console.log("msrp", msrpNum + " vs " + priceNum)
+
+                    if (msrpNum > priceNum) {
+                        msrp = '<h4 class="px-1 strike text-muted">' + "$" + data.results[i].msrp + '</h4>';
+                    }
+
+                }
+
+                ShoppingCard += '<div class="mb-4 col-12 col-sm-6 col-md-4 col-lg-4">';
+                ShoppingCard += '<div class="card shadow bg-white rounded">';
+                ShoppingCard += '<img class="card-img-top img-fluid" src="' + data.results[i].thumbnailImageUrl + '" alt="Card image" />';
+                ShoppingCard += '<div class="card-body">';
+                ShoppingCard += '<h4>' + data.results[i].title + '</h4>';
+                ShoppingCard += '<div class="d-flex justify-content-center">';
+                ShoppingCard += '<h4 class="px-1">' + "$" + data.results[i].price + '</h4>'
+                ShoppingCard += msrp;
+                ShoppingCard += '</div>';
+                ShoppingCard += '</div>';
+                ShoppingCard += '</div>';
+                ShoppingCard += '</div>';
+            }
+
+
+            $(".ShoppingCards").html(ShoppingCard);
+            // $("#pagLi").html(pagination);
+
+
+        });
+    }
+
+
+    function next() {
+
+        paginationNumber = paginationNumber + 1;
+        $.ajax("http://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + (paginationNumber)).done(function (data) {
+            // console.log(data)
+            mediaQuery();
+            var paginationNumbers = document.getElementsByClassName("paginationNumber");
+
+            for (let i = 0; i < paginationNumbers.length; i++) {
+                paginationNumbers[i].innerHTML = paginationNumber;
+
+                for (let i = 0; i < document.getElementsByClassName("previous").length; i++) {
+
+                    if (paginationNumber === 1) {
+                        if (!document.getElementsByClassName("previous")[i].classList.contains("disabled")) {
+                            document.getElementsByClassName("next")[i].classList.remove("disabled")
+                            document.getElementsByClassName("previous")[i].classList.add("disabled")
+                        }
+                    }
+
+                    if (paginationNumber > 1) {
+                        document.getElementsByClassName("previous")[i].classList.remove("disabled")
+                        document.getElementsByClassName("next")[i].classList.remove("disabled")
+                    }
+
+                    if (paginationNumber === data.pagination.totalPages) {
+                        document.getElementsByClassName("previous")[i].classList.remove("disabled")
+                        document.getElementsByClassName("next")[i].classList.add("disabled")
+                    }
+
+                }
+            }
+
+            var ShoppingCard = "";
+
+            for (let i = 0; i < data.results.length; i++) {
+                var msrp = "";
+
+                // product has an “msrp” field
+                if (data.results[i].msrp != null || data.results[i].msrp !== undefined || data.results[i].msrp !== "") {
+                    // and it’s less than “price” field
+                    // console.log(data.results[i].msrp < data.results[i].price)
+                    var msrpNum = parseFloat(data.results[i].msrp);
+                    var priceNum = parseFloat(data.results[i].price);
+                    //console.log("msrp", msrpNum + " vs " + priceNum)
+
+                    if (msrpNum > priceNum) {
+                        msrp = '<h4 class="px-1 strike text-muted">' + "$" + data.results[i].msrp + '</h4>';
+                        console.log(msrp)
+                        // console.log(data.results[i].msrp)
+                    }
+
+                }
+
+                ShoppingCard += '<div class="mb-4 col-12 col-sm-6 col-md-4 col-lg-4">';
+                ShoppingCard += '<div class="card shadow bg-white rounded">';
+                ShoppingCard += '<img class="card-img-top img-fluid" src="' + data.results[i].thumbnailImageUrl + '" alt="Card image" />';
+                ShoppingCard += '<div class="card-body">';
+                ShoppingCard += '<h4>' + data.results[i].title + '</h4>';
+                ShoppingCard += '<div class="d-flex justify-content-center">';
+                ShoppingCard += '<h4 class="px-1">' + "$" + data.results[i].price + '</h4>'
+                ShoppingCard += msrp;
+                ShoppingCard += '</div>';
+                ShoppingCard += '</div>';
+                ShoppingCard += '</div>';
+                ShoppingCard += '</div>';
+            }
+
+
+            $(".ShoppingCards").html(ShoppingCard);
+        })
+
+    }
+
+    function previous() {
+
+        paginationNumber = paginationNumber - 1;
+
+        $.ajax("http://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + (paginationNumber)).done(function (data) {
+
+            var paginationNumbers = document.getElementsByClassName("paginationNumber");
+
+            for (let i = 0; i < paginationNumbers.length; i++) {
+                paginationNumbers[i].innerHTML = paginationNumber;
+
+                for (let i = 0; i < document.getElementsByClassName("previous").length; i++) {
+
+                    if (paginationNumber === 1) {
+                        if (!document.getElementsByClassName("previous")[i].classList.contains("disabled")) {
+                            document.getElementsByClassName("next")[i].classList.remove("disabled")
+                            document.getElementsByClassName("previous")[i].classList.add("disabled")
+                        }
+                    }
+
+                    if (paginationNumber > 1) {
+                        document.getElementsByClassName("previous")[i].classList.remove("disabled")
+                        document.getElementsByClassName("next")[i].classList.remove("disabled")
+                    }
+
+                    if (paginationNumber === data.pagination.totalPages) {
+                        document.getElementsByClassName("previous")[i].classList.remove("disabled")
+                        document.getElementsByClassName("next")[i].classList.add("disabled")
+                    }
+
+                }
+            }
+            var ShoppingCard = "";
+            for (let i = 0; i < data.results.length; i++) {
+                var msrp = "";
+
+                // product has an “msrp” field
+                if (data.results[i].msrp != null || data.results[i].msrp !== undefined || data.results[i].msrp !== "") {
+                    // and it’s less than “price” field
+                    // console.log(data.results[i].msrp < data.results[i].price)
+                    var msrpNum = parseFloat(data.results[i].msrp);
+                    var priceNum = parseFloat(data.results[i].price);
+                    //console.log("msrp", msrpNum + " vs " + priceNum)
+
+                    if (msrpNum > priceNum) {
+                        msrp = '<h4 class="px-3 strike text-muted">' + "$" + data.results[i].msrp + '</h4>';
+                        console.log(msrp)
+                        // console.log(data.results[i].msrp)
+                    }
+
+                }
+
+                ShoppingCard += '<div class="mb-4 col-12 col-sm-6 col-md-4 col-lg-4">';
+                ShoppingCard += '<div class="card shadow bg-white rounded">';
+                ShoppingCard += '<img class="card-img-top img-fluid" src="' + data.results[i].thumbnailImageUrl + '" alt="Card image" />';
+                ShoppingCard += '<div class="card-body">';
+                ShoppingCard += '<h4>' + data.results[i].title + '</h4>';
+                ShoppingCard += '<div class="d-flex justify-content-center">';
+                ShoppingCard += '<h4 class="px-1">' + "$" + data.results[i].price + '</h4>'
+                ShoppingCard += msrp;
+                ShoppingCard += '</div>';
+                ShoppingCard += '</div>';
+                ShoppingCard += '</div>';
+                ShoppingCard += '</div>';
+            }
+
+            $(".ShoppingCards").html(ShoppingCard);
+        })
+
+    }
+
+
+    var navHeader = document.getElementById("navHeader");
+
+    navHeader.addEventListener("click", notEmptyLanding);
+
+    var bothNext = document.getElementsByClassName("paginationNumberNext");
+
+    for (let i = 0; i < bothNext.length; i++) {
+        bothNext[i].addEventListener("click", next);
+    }
+
+    var bothPrevious = document.getElementsByClassName("paginationNumberPrevious");
+
+    for (let i = 0; i < bothNext.length; i++) {
+        bothPrevious[i].addEventListener("click", previous);
+    }
+    // ===== Scroll to Top ====
+    $(window).scroll(function () {
+        if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+            $('#return-to-top').fadeIn(200);    // Fade in the arrow
+        } else {
+            $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+        }
+    });
+    $('#return-to-top').click(function () {      // When arrow is clicked
+        $('body,html').animate({
+            scrollTop: 0                       // Scroll to top of body
+        }, 500);
+    });
+
+    //BONUS ==Above and below the results show pagination with next and previous buttons. You could also display some pages before/after the current page as applicable.
+
+    // function apiCallNum(){
+    //     $.ajax("http://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + (this.innerHTML)).done(function (data) {
+    //         var ShoppingCard = "";
+    //         for (let i = 0; i < data.results.length; i++) {
+    //             var msrp = "";
+    //
+    //             // product has an “msrp” field
+    //             if (data.results[i].msrp != null || data.results[i].msrp !== undefined || data.results[i].msrp !== "") {
+    //                 // and it’s less than “price” field
+    //                 // console.log(data.results[i].msrp < data.results[i].price)
+    //                 var msrpNum = parseFloat(data.results[i].msrp);
+    //                 var priceNum = parseFloat(data.results[i].price);
+    //                 //console.log("msrp", msrpNum + " vs " + priceNum)
+    //
+    //                 if (msrpNum > priceNum) {
+    //                     msrp = '<h4 class="px-3 strike text-muted">' + "$" + data.results[i].msrp + '</h4>';
+    //                     console.log(msrp)
+    //                     // console.log(data.results[i].msrp)
+    //                 }
+    //
+    //             }
+    //
+    //             ShoppingCard += '<div class="mb-4 col-12 col-sm-6 col-md-4 col-lg-4">';
+    //             ShoppingCard += '<div class="card shadow bg-white rounded">';
+    //             ShoppingCard += '<img class="card-img-top img-fluid" src="' + data.results[i].thumbnailImageUrl + '" alt="Card image" />';
+    //             ShoppingCard += '<div class="card-body">';
+    //             ShoppingCard += '<h4>' + data.results[i].title + '</h4>';
+    //             ShoppingCard += '<div class="d-flex justify-content-center">';
+    //             ShoppingCard += '<h4 class="px-1">' + "$" + data.results[i].price + '</h4>'
+    //             ShoppingCard += msrp;
+    //             ShoppingCard += '</div>';
+    //             ShoppingCard += '</div>';
+    //             ShoppingCard += '</div>';
+    //             ShoppingCard += '</div>';
+    //         }
+    //
+    //         $(".ShoppingCards").html(ShoppingCard);
+    //     });
+    // }
+    //
+    // var apiCallNums = document.getElementsByClassName("apiCallNum")
+    // for (let i = 0; i < apiCallNums.length; i++) {
+    //     apiCallNums[i].addEventListener("click", apiCallNum);
+    // }
+
+</script>
+</body>
+</html>
