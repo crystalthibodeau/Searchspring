@@ -1,0 +1,104 @@
+.jumbotron{
+    height: 90vh;
+    background-size: cover;
+    opacity:.7;
+    /*background-color: black;*/
+    background-image:url("../IMG/pexels-resized.jpg");
+}
+#return-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #3A23AD;
+    width: 50px;
+    height: 50px;
+    text-decoration: none;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    display: none;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+#return-to-top i {
+    color: #fff;
+    position: relative;
+    left: 16px;
+    top: 13px;
+    font-size: 19px;
+    font-weight: bolder;
+    -webkit-transition: all 0.8s ease;
+    -moz-transition: all 0.8s ease;
+    -o-transition: all 0.8s ease;
+    transition: all 0.8s ease;
+}
+
+#return-to-top:hover {
+    background: #00CEE1;;
+}
+
+#return-to-top:hover i {
+    text-shadow: 2px 1px 2px #1C6EA4;
+    color: #fff;
+    top: 5px;
+}
+
+.strike {
+    text-decoration: line-through;
+}
+
+.btn {
+    background-color: white;
+    color: #3A23AD;
+    border-radius: 50%;
+    border: none;
+}
+
+.searchSpringNav {
+    background-color: #3A23AD;
+}
+
+.card {
+    transition: transform .2s;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+.fas {
+    color: white;
+    transition: transform .2s ease-in-out;
+}
+
+.fas:hover {
+    transform: scale(1.16);
+    color: #00CEE1;
+!important;
+}
+
+.page-link {
+    color: #3A23AD;
+!important;
+}
+
+.page-link:hover {
+    color: #00CEE1;
+}
+
+#navHeader {
+    transition: transform .2s ease-in-out;
+    color: lightgrey;
+}
+
+#navHeader:hover {
+    color: #00CEE1;
+    transform: scale(1.05);
+}
+
+.searchSpringText {
+    color: #3A23AD;
+}
