@@ -1,28 +1,4 @@
-
-
-function mediaQuery() {
-    if (window.matchMedia("(max-width: 600px)").matches) {
-        document.getElementById("demoForm").classList.remove("form-inline")
-    } else {
-        document.getElementById("demoForm").classList.add("form-inline")
-    }
-}
-
-mediaQuery();
-
-function notEmptyLanding() {
-    $('#demoForm').submit();
-}
-
-var number = 1;
-var paginationNumber;
-var paginationNumbers = document.getElementsByClassName("paginationNumber");
-for (let i = 0; i < paginationNumbers.length; i++) {
-    document.getElementsByClassName("paginationNumber")[i].innerHTML = number;
-}
-
-paginationNumber = number;
-
+// ==========================Submits ajax request for catolog items without search param==============================
 
 if (document.getElementById("search") == null) {
     console.log("oops, null");
@@ -35,16 +11,86 @@ if (document.getElementById("search") == null) {
     if (searchParam != null) {
         searchString = searchParam.replace(/,|,\s/g, ",+");
     }
+//==================Submits ajax request for catolog items when search strinig is empty====================================
 
     if (searchString === "") {
         $('#demoForm').submit();
     }
+
+// ==========================Submits ajax request for catolog items when Navbar clicked=================================
+
+    function notEmptyLanding() {
+        $('#demoForm').submit();
+    }
+
+    var navHeader = document.getElementById("navHeader");
+    navHeader.addEventListener("click", notEmptyLanding);
+
+// =================================Checks media query for nav view in mobile===========================================
+
+    function mediaQuery() {
+        if (window.matchMedia("(max-width: 600px)").matches) {
+            document.getElementById("demoForm").classList.remove("form-inline")
+        } else {
+            document.getElementById("demoForm").classList.add("form-inline")
+        }
+    }
+
+    mediaQuery();
+    // ====================================sets pagination number to 1 on load==========================================
+
+    var paginationNumber = 1;
+
+    //selects top and bottom pagination
+    var paginationNumbers = document.getElementsByClassName("paginationNumber");
+
+    function paginationUpdate(){
+        for (let i = 0; i < paginationNumbers.length; i++) {
+            document.getElementsByClassName("paginationNumber")[i].innerHTML = paginationNumber;
+        }
+    }
+    paginationUpdate();
+
+    // =============================================Start of first page load============================================
+
+    function Disable(a, b){
+
+        for (let i = 0; i < document.getElementsByClassName("previous").length; i++) {
+
+            if (a === 1) {
+                if (!document.getElementsByClassName("previous")[i].classList.contains("disabled")) {
+                    document.getElementsByClassName("next")[i].classList.remove("disabled")
+                    document.getElementsByClassName("previous")[i].classList.add("disabled")
+                }
+            }
+
+            if (a > 1) {
+                document.getElementsByClassName("previous")[i].classList.remove("disabled")
+                document.getElementsByClassName("next")[i].classList.remove("disabled")
+            }
+
+            if (a === b) {
+                document.getElementsByClassName("previous")[i].classList.remove("disabled")
+                document.getElementsByClassName("next")[i].classList.add("disabled")
+            }
+
+        }
+
+    }
+
+
+    // ============================================= // ============================================= // =============================================
+
+
     var firstRun = "http://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + 1;
     $.ajax(firstRun).done(function (data) {
         mediaQuery();
-
+        console.log(data.results)
         // Create the cards
         var ShoppingCard = "";
+
+        // =======================================start of dynamic pagination===============================================
+
         // var pagination = "";
         // pagination += '<li class="page-item disabled previous">' + '<a class="page-link paginationNumberPrevious" href="#" tabindex="-1" aria-disabled="true">Previous</a>\n' + ' </li>'
         //
@@ -54,15 +100,16 @@ if (document.getElementById("search") == null) {
         // pagination += '<li class="page-item next">' + '<a class="page-link paginationNumberNext" href="#">Next</a>' + '</li>';
         // console.log(pagination);
 
+        // =====================================Creating dynamic MSRP check=================================================
 
         for (let i = 0; i < data.results.length; i++) {
             var msrp = "";
             // product has an “msrp” field
             if (data.results[i].msrp != null || data.results[i].msrp !== undefined || data.results[i].msrp !== "") {
-                // and it’s less than “price” field
-                // console.log(data.results[i].msrp < data.results[i].price)
+
                 var msrpNum = parseFloat(data.results[i].msrp);
                 var priceNum = parseFloat(data.results[i].price);
+
                 //console.log("msrp", msrpNum + " vs " + priceNum)
 
                 if (msrpNum > priceNum) {
@@ -85,47 +132,31 @@ if (document.getElementById("search") == null) {
             ShoppingCard += '</div>';
         }
 
+        // ============================add the cards to the view=======================
 
         $(".ShoppingCards").html(ShoppingCard);
         // $("#pagLi").html(pagination);
-
 
     });
 }
 
 
+// ================================Loads the next page each time next button is clicked=================================
+
 function next() {
 
+
+    //==========updates pagination number/matching page loaded with pagination clicks
     paginationNumber = paginationNumber + 1;
     $.ajax("http://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + (paginationNumber)).done(function (data) {
-        // console.log(data)
+
+        console.log(data.results)
+
         mediaQuery();
-        var paginationNumbers = document.getElementsByClassName("paginationNumber");
 
-        for (let i = 0; i < paginationNumbers.length; i++) {
-            paginationNumbers[i].innerHTML = paginationNumber;
+        paginationUpdate();
 
-            for (let i = 0; i < document.getElementsByClassName("previous").length; i++) {
-
-                if (paginationNumber === 1) {
-                    if (!document.getElementsByClassName("previous")[i].classList.contains("disabled")) {
-                        document.getElementsByClassName("next")[i].classList.remove("disabled")
-                        document.getElementsByClassName("previous")[i].classList.add("disabled")
-                    }
-                }
-
-                if (paginationNumber > 1) {
-                    document.getElementsByClassName("previous")[i].classList.remove("disabled")
-                    document.getElementsByClassName("next")[i].classList.remove("disabled")
-                }
-
-                if (paginationNumber === data.pagination.totalPages) {
-                    document.getElementsByClassName("previous")[i].classList.remove("disabled")
-                    document.getElementsByClassName("next")[i].classList.add("disabled")
-                }
-
-            }
-        }
+        Disable(paginationNumber, data.pagination.totalPages);
 
         var ShoppingCard = "";
 
@@ -142,7 +173,7 @@ function next() {
 
                 if (msrpNum > priceNum) {
                     msrp = '<h4 class="px-1 strike text-muted">' + "$" + data.results[i].msrp + '</h4>';
-                    console.log(msrp)
+                    // console.log(msrp)
                     // console.log(data.results[i].msrp)
                 }
 
@@ -164,42 +195,23 @@ function next() {
 
 
         $(".ShoppingCards").html(ShoppingCard);
+
     })
 
 }
+// ================================Loads the previous page each time next button is clicked=================================
 
 function previous() {
 
     paginationNumber = paginationNumber - 1;
 
     $.ajax("http://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + (paginationNumber)).done(function (data) {
+        console.log(data.results)
 
-        var paginationNumbers = document.getElementsByClassName("paginationNumber");
+        paginationUpdate();
 
-        for (let i = 0; i < paginationNumbers.length; i++) {
-            paginationNumbers[i].innerHTML = paginationNumber;
+        Disable(paginationNumber, data.pagination.totalPages);
 
-            for (let i = 0; i < document.getElementsByClassName("previous").length; i++) {
-
-                if (paginationNumber === 1) {
-                    if (!document.getElementsByClassName("previous")[i].classList.contains("disabled")) {
-                        document.getElementsByClassName("next")[i].classList.remove("disabled")
-                        document.getElementsByClassName("previous")[i].classList.add("disabled")
-                    }
-                }
-
-                if (paginationNumber > 1) {
-                    document.getElementsByClassName("previous")[i].classList.remove("disabled")
-                    document.getElementsByClassName("next")[i].classList.remove("disabled")
-                }
-
-                if (paginationNumber === data.pagination.totalPages) {
-                    document.getElementsByClassName("previous")[i].classList.remove("disabled")
-                    document.getElementsByClassName("next")[i].classList.add("disabled")
-                }
-
-            }
-        }
         var ShoppingCard = "";
         for (let i = 0; i < data.results.length; i++) {
             var msrp = "";
@@ -214,7 +226,7 @@ function previous() {
 
                 if (msrpNum > priceNum) {
                     msrp = '<h4 class="px-3 strike text-muted">' + "$" + data.results[i].msrp + '</h4>';
-                    console.log(msrp)
+                    // console.log(msrp)
                     // console.log(data.results[i].msrp)
                 }
 
@@ -235,39 +247,22 @@ function previous() {
         }
 
         $(".ShoppingCards").html(ShoppingCard);
+
     })
 
 }
 
-
-var navHeader = document.getElementById("navHeader");
-
-navHeader.addEventListener("click", notEmptyLanding);
-
+// ================================Dynamically add event listener "click" for paginations===============================
 var bothNext = document.getElementsByClassName("paginationNumberNext");
+var bothPrevious = document.getElementsByClassName("paginationNumberPrevious");
 
 for (let i = 0; i < bothNext.length; i++) {
     bothNext[i].addEventListener("click", next);
 }
-
-var bothPrevious = document.getElementsByClassName("paginationNumberPrevious");
-
 for (let i = 0; i < bothNext.length; i++) {
     bothPrevious[i].addEventListener("click", previous);
 }
-// ===== Scroll to Top ====
-$(window).scroll(function () {
-    if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
-        $('#return-to-top').fadeIn(200);    // Fade in the arrow
-    } else {
-        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
-    }
-});
-$('#return-to-top').click(function () {      // When arrow is clicked
-    $('body,html').animate({
-        scrollTop: 0                       // Scroll to top of body
-    }, 500);
-});
+// =====================================================================================================================
 
 //BONUS ==Above and below the results show pagination with next and previous buttons. You could also display some pages before/after the current page as applicable.
 
@@ -315,4 +310,20 @@ $('#return-to-top').click(function () {      // When arrow is clicked
 // for (let i = 0; i < apiCallNums.length; i++) {
 //     apiCallNums[i].addEventListener("click", apiCallNum);
 // }
+
+
+//======================########################===== Scroll to Top ====########################========================
+$(window).scroll(function () {
+    if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+        $('#return-to-top').fadeIn(200);    // Fade in the arrow
+    } else {
+        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+    }
+});
+$('#return-to-top').click(function () {      // When arrow is clicked
+    $('body,html').animate({
+        scrollTop: 0                       // Scroll to top of body
+    }, 500);
+});
+
 
