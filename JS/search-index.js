@@ -125,7 +125,7 @@ if (document.getElementById("search") == null) {
     // =============================================Start of first page=================================================
 
 
-    var firstRun = "http://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + 1;
+    var firstRun = "http://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + 1 + "/";
     $.ajax(firstRun).done(function (data) {
         mediaQuery();
         // console.log(data)
@@ -158,7 +158,7 @@ function next() {
 
     //==========updates pagination number/matching page loaded with pagination clicks
     paginationNumber = paginationNumber + 1;
-    $.ajax("http://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + (paginationNumber)).done(function (data) {
+    $.ajax("http://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + (paginationNumber) + "/").done(function (data) {
 
         // console.log(data.results)
 
@@ -184,7 +184,7 @@ function previous() {
 
     paginationNumber = paginationNumber - 1;
 
-    $.ajax("http://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + (paginationNumber)).done(function (data) {
+    $.ajax("http://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + (paginationNumber) + "/").done(function (data) {
 
         paginationUpdate();
 
