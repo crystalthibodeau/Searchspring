@@ -282,10 +282,11 @@ $("#darkMode").click(function () {
     var search = document.getElementById("search");
     var submit = document.getElementById("icon");
     var pagLis = document.getElementById("pagLi");
+    var pagLis2 = document.getElementById("pagLi2");
 
 
     // ==========================first click/ to turn dark mode on
-    if(nav.classList.contains("searchSpringNav") && navButton.classList.contains("searchSpringNav")){
+    if (nav.classList.contains("searchSpringNav") && navButton.classList.contains("searchSpringNav")) {
 
         submit.classList.add("dmIcon");
         submit.classList.remove("icon");
@@ -297,25 +298,23 @@ $("#darkMode").click(function () {
         navButton.classList.add("dMBackgroundColor");
         search.classList.add("dmSearch")
 
-        for(let i = 0; i < cards.length; i++){
+        for (let i = 0; i < cards.length; i++) {
             cards[i].classList.add("dmCardColor");
         }
-        // for(let j = 0; j < pagLis.length; j++){
-        //     console.log(j, pagLis[j].classList)
-            pagLis.classList.add("test");
-        // }
 
-    // ==========================second click/ to turn dark mode off
-    }else{
+        pagLis.classList.add("test");
+        pagLis2.classList.add("test");
 
-        for(let i =0; i < cards.length; i++){
-            // console.log(cards[i].classList)
+
+        // ==========================second click/ to turn dark mode off
+    } else {
+
+        for (let i = 0; i < cards.length; i++) {
             cards[i].classList.remove("dmCardColor");
         }
 
-        // for(let i =0; i < pagLis.length; i++){
-            pagLis.classList.remove("test");
-        // }
+        pagLis.classList.remove("test");
+        pagLis2.classList.remove("test");
 
         submit.classList.add("icon");
         submit.classList.remove("dmIcon");

@@ -54,11 +54,11 @@
 .paginations {
     display: flex;
     justify-content: center;
-    border-radius: 35px;
+    /*border-radius: 35px;*/
 }
-
 .paginations a {
     color: #3A23AD;
+    background-color: #F1F3F9;
     float: left;
     padding: 8px 16px;
     text-decoration: none;
@@ -66,8 +66,16 @@
 
 .paginations a:hover {
     color: #00CEE1;
+    background-color: #3A23AD;
 }
-
+.left-radius{
+    border-bottom-left-radius: 35px;
+    -webkit-border-top-left-radius: 35px;
+}
+.right-radius{
+    border-bottom-right-radius: 35px;
+    -webkit-border-top-right-radius: 35px;
+}
 .btn {
     background-color: white;
     color: #3A23AD;
@@ -119,12 +127,6 @@
 
 /*=======================================Dark Mode Classes*/
 
-
-/*.dMBackgroundColor{*/
-/*    background-color: black;!important;*/
-
-/*}*/
-
 .dMBackgroundColor {
     background-color: #333435;
 !important;
@@ -144,25 +146,22 @@
 }
 
 .dmIcon {
-    color: #393C3D;
+    color: black;
+/*//393C3D*/
 }
 
-.test{
-    border-radius: 35px;!important;
+.dmText{
+    color: lightgray;
 }
 
 .test > li > a {
-    background-color: #393C3D;
-!important;
-    border-color: #393C3D;
-!important;
+    background-color: #393C3D;!important;
+    border-color: #393C3D;!important;
     color: #666666;
 }
 
 .test > li > a:hover {
-    background-color: #666666;
-!important;
-    border-color: #666666;
-!important;
+    background-color: #666666;!important;
+    border-color: #666666;!important;
     color: #393C3D;
 }
