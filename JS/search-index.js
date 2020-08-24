@@ -1,3 +1,43 @@
+
+
+function createCards(results, card){ //data.results
+
+    card = "";
+
+    for (let i = 0; i < results.length; i++) {
+
+        var msrp = "";
+        // product has an “msrp” field
+        if (results[i].msrp != null || results[i].msrp !== undefined || results[i].msrp !== "") {
+
+            var msrpNum = parseFloat(results[i].msrp);
+            var priceNum = parseFloat(results[i].price);
+            //console.log("msrp", msrpNum + " vs " + priceNum)
+
+            if (msrpNum > priceNum) {
+                msrp = '<h4 class="px-1 strike text-muted">' + "$" + results[i].msrp + '</h4>';
+            }
+
+        }
+
+        card += '<div class="mb-4 col-12 col-sm-6 col-md-4 col-lg-4">';
+        card += '<div class="card shadow bg-white rounded">';
+        card += '<img class="card-img-top img-fluid" src="' + results[i].thumbnailImageUrl + '" alt="Card image" />';
+        card += '<div class="card-body">';
+        card += '<h4>' + results[i].title + '</h4>';
+        card += '<div class="d-flex justify-content-center">';
+        card += '<h4 class="px-1">' + "$" + results[i].price + '</h4>'
+        card += msrp;
+        card += '</div>';
+        card += '</div>';
+        card += '</div>';
+        card += '</div>';
+    }
+
+    $(".ShoppingCards").html(card);
+}
+
+
 // ==========================Submits ajax request for catolog items without search param==============================
 
 if (document.getElementById("search") == null) {
@@ -85,7 +125,7 @@ if (document.getElementById("search") == null) {
     var firstRun = "http://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + 1;
     $.ajax(firstRun).done(function (data) {
         mediaQuery();
-        console.log(data.results)
+        // console.log(data)
         // Create the cards
         var ShoppingCard = "";
 
@@ -100,41 +140,7 @@ if (document.getElementById("search") == null) {
         // pagination += '<li class="page-item next">' + '<a class="page-link paginationNumberNext" href="#">Next</a>' + '</li>';
         // console.log(pagination);
 
-        // =====================================Creating dynamic MSRP check=================================================
-
-        for (let i = 0; i < data.results.length; i++) {
-            var msrp = "";
-            // product has an “msrp” field
-            if (data.results[i].msrp != null || data.results[i].msrp !== undefined || data.results[i].msrp !== "") {
-
-                var msrpNum = parseFloat(data.results[i].msrp);
-                var priceNum = parseFloat(data.results[i].price);
-
-                //console.log("msrp", msrpNum + " vs " + priceNum)
-
-                if (msrpNum > priceNum) {
-                    msrp = '<h4 class="px-1 strike text-muted">' + "$" + data.results[i].msrp + '</h4>';
-                }
-
-            }
-
-            ShoppingCard += '<div class="mb-4 col-12 col-sm-6 col-md-4 col-lg-4">';
-            ShoppingCard += '<div class="card shadow bg-white rounded">';
-            ShoppingCard += '<img class="card-img-top img-fluid" src="' + data.results[i].thumbnailImageUrl + '" alt="Card image" />';
-            ShoppingCard += '<div class="card-body">';
-            ShoppingCard += '<h4>' + data.results[i].title + '</h4>';
-            ShoppingCard += '<div class="d-flex justify-content-center">';
-            ShoppingCard += '<h4 class="px-1">' + "$" + data.results[i].price + '</h4>'
-            ShoppingCard += msrp;
-            ShoppingCard += '</div>';
-            ShoppingCard += '</div>';
-            ShoppingCard += '</div>';
-            ShoppingCard += '</div>';
-        }
-
-        // ============================add the cards to the view=======================
-
-        $(".ShoppingCards").html(ShoppingCard);
+        createCards(data.results, ShoppingCard);//data.results
         // $("#pagLi").html(pagination);
 
     });
@@ -150,7 +156,7 @@ function next() {
     paginationNumber = paginationNumber + 1;
     $.ajax("http://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + (paginationNumber)).done(function (data) {
 
-        console.log(data.results)
+        // console.log(data.results)
 
         mediaQuery();
 
@@ -160,41 +166,8 @@ function next() {
 
         var ShoppingCard = "";
 
-        for (let i = 0; i < data.results.length; i++) {
-            var msrp = "";
+        createCards(data.results, ShoppingCard);//data.results
 
-            // product has an “msrp” field
-            if (data.results[i].msrp != null || data.results[i].msrp !== undefined || data.results[i].msrp !== "") {
-                // and it’s less than “price” field
-                // console.log(data.results[i].msrp < data.results[i].price)
-                var msrpNum = parseFloat(data.results[i].msrp);
-                var priceNum = parseFloat(data.results[i].price);
-                //console.log("msrp", msrpNum + " vs " + priceNum)
-
-                if (msrpNum > priceNum) {
-                    msrp = '<h4 class="px-1 strike text-muted">' + "$" + data.results[i].msrp + '</h4>';
-                    // console.log(msrp)
-                    // console.log(data.results[i].msrp)
-                }
-
-            }
-
-            ShoppingCard += '<div class="mb-4 col-12 col-sm-6 col-md-4 col-lg-4">';
-            ShoppingCard += '<div class="card shadow bg-white rounded">';
-            ShoppingCard += '<img class="card-img-top img-fluid" src="' + data.results[i].thumbnailImageUrl + '" alt="Card image" />';
-            ShoppingCard += '<div class="card-body">';
-            ShoppingCard += '<h4>' + data.results[i].title + '</h4>';
-            ShoppingCard += '<div class="d-flex justify-content-center">';
-            ShoppingCard += '<h4 class="px-1">' + "$" + data.results[i].price + '</h4>'
-            ShoppingCard += msrp;
-            ShoppingCard += '</div>';
-            ShoppingCard += '</div>';
-            ShoppingCard += '</div>';
-            ShoppingCard += '</div>';
-        }
-
-
-        $(".ShoppingCards").html(ShoppingCard);
 
     })
 
@@ -206,47 +179,15 @@ function previous() {
     paginationNumber = paginationNumber - 1;
 
     $.ajax("http://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + (paginationNumber)).done(function (data) {
-        console.log(data.results)
 
         paginationUpdate();
 
         Disable(paginationNumber, data.pagination.totalPages);
 
         var ShoppingCard = "";
-        for (let i = 0; i < data.results.length; i++) {
-            var msrp = "";
 
-            // product has an “msrp” field
-            if (data.results[i].msrp != null || data.results[i].msrp !== undefined || data.results[i].msrp !== "") {
-                // and it’s less than “price” field
-                // console.log(data.results[i].msrp < data.results[i].price)
-                var msrpNum = parseFloat(data.results[i].msrp);
-                var priceNum = parseFloat(data.results[i].price);
-                //console.log("msrp", msrpNum + " vs " + priceNum)
+        createCards(data.results, ShoppingCard);
 
-                if (msrpNum > priceNum) {
-                    msrp = '<h4 class="px-3 strike text-muted">' + "$" + data.results[i].msrp + '</h4>';
-                    // console.log(msrp)
-                    // console.log(data.results[i].msrp)
-                }
-
-            }
-
-            ShoppingCard += '<div class="mb-4 col-12 col-sm-6 col-md-4 col-lg-4">';
-            ShoppingCard += '<div class="card shadow bg-white rounded">';
-            ShoppingCard += '<img class="card-img-top img-fluid" src="' + data.results[i].thumbnailImageUrl + '" alt="Card image" />';
-            ShoppingCard += '<div class="card-body">';
-            ShoppingCard += '<h4>' + data.results[i].title + '</h4>';
-            ShoppingCard += '<div class="d-flex justify-content-center">';
-            ShoppingCard += '<h4 class="px-1">' + "$" + data.results[i].price + '</h4>'
-            ShoppingCard += msrp;
-            ShoppingCard += '</div>';
-            ShoppingCard += '</div>';
-            ShoppingCard += '</div>';
-            ShoppingCard += '</div>';
-        }
-
-        $(".ShoppingCards").html(ShoppingCard);
 
     })
 
@@ -262,6 +203,26 @@ for (let i = 0; i < bothNext.length; i++) {
 for (let i = 0; i < bothNext.length; i++) {
     bothPrevious[i].addEventListener("click", previous);
 }
+//======================########################===== Scroll to Top ====########################========================
+$(window).scroll(function () {
+    if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+        $('#return-to-top').fadeIn(200);    // Fade in the arrow
+    } else {
+        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+    }
+});
+$('#return-to-top').click(function () {      // When arrow is clicked
+    $('body,html').animate({
+        scrollTop: 0                       // Scroll to top of body
+    }, 500);
+});
+
+
+//BONUS ==Above and below the results show pagination with next and previous buttons. You could also display some pages before/after the current page as applicable.
+//color clicker
+//right spot of page when search is submitted and jumbotron is active
+//nav items?
+//on sale or seasonal items
 // =====================================================================================================================
 
 //BONUS ==Above and below the results show pagination with next and previous buttons. You could also display some pages before/after the current page as applicable.
@@ -310,20 +271,4 @@ for (let i = 0; i < bothNext.length; i++) {
 // for (let i = 0; i < apiCallNums.length; i++) {
 //     apiCallNums[i].addEventListener("click", apiCallNum);
 // }
-
-
-//======================########################===== Scroll to Top ====########################========================
-$(window).scroll(function () {
-    if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
-        $('#return-to-top').fadeIn(200);    // Fade in the arrow
-    } else {
-        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
-    }
-});
-$('#return-to-top').click(function () {      // When arrow is clicked
-    $('body,html').animate({
-        scrollTop: 0                       // Scroll to top of body
-    }, 500);
-});
-
 
