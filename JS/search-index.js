@@ -22,9 +22,9 @@ function createCards(results, card) { //data.results
         card += '<div class="card shadow bg-white rounded">';
         card += '<img class="card-img-top img-fluid" src="' + results[i].thumbnailImageUrl + '" alt="Card image" />';
         card += '<div class="card-body">';
-        card += '<h4>' + results[i].title + '</h4>';
+        card += '<h4 class="text">' + results[i].title + '</h4>';
         card += '<div class="d-flex justify-content-center">';
-        card += '<h4 class="px-1">' + "$" + results[i].price + '</h4>'
+        card += '<h4 class="text px-1">' + "$" + results[i].price + '</h4>'
         card += msrp;
         card += '</div>';
         card += '</div>';
@@ -294,6 +294,7 @@ $("#darkMode").click(function () {
     var pagLis = document.getElementById("pagLi");
     var pagLis2 = document.getElementById("pagLi2");
     var toTop = document.getElementById("return-to-top");
+    var text = document.getElementsByClassName("text");
 
 
     // ==========================first click/ to turn dark mode on
@@ -313,6 +314,9 @@ $("#darkMode").click(function () {
         for (let i = 0; i < cards.length; i++) {
             cards[i].classList.add("dmCardColor");
         }
+        for (let i = 0; i < text.length; i++) {
+            text[i].classList.add("dmText");
+        }
 
         pagLis.classList.add("test");
         pagLis2.classList.add("test");
@@ -324,7 +328,9 @@ $("#darkMode").click(function () {
         for (let i = 0; i < cards.length; i++) {
             cards[i].classList.remove("dmCardColor");
         }
-
+        for (let i = 0; i < text.length; i++) {
+            text[i].classList.remove("dmText");
+        }
         pagLis.classList.remove("test");
         pagLis2.classList.remove("test");
 
