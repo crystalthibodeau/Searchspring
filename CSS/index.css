@@ -1,10 +1,11 @@
-.jumbotron{
+.jumbotron {
     height: 90vh;
     background-size: cover;
-    opacity:.7;
+    opacity: .7;
     /*background-color: black;*/
-    background-image:url("../IMG/pexels-resized.jpg");
+    background-image: url("../IMG/pexels-resized.jpg");
 }
+
 #return-to-top {
     position: fixed;
     bottom: 20px;
@@ -50,6 +51,23 @@
     text-decoration: line-through;
 }
 
+.paginations {
+    display: flex;
+    justify-content: center;
+    border-radius: 35px;
+}
+
+.paginations a {
+    color: #3A23AD;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.paginations a:hover {
+    color: #00CEE1;
+}
+
 .btn {
     background-color: white;
     color: #3A23AD;
@@ -60,34 +78,29 @@
 .searchSpringNav {
     background-color: #3A23AD;
 }
-.dMBackgroundColor { background-color: black;!important; }
 
 .card {
     transition: transform .2s;
+    border: none;
 }
 
 .card:hover {
     transform: scale(1.03);
+    border: none;
 }
 
 .fas {
-    color: white;
     transition: transform .2s ease-in-out;
+}
+
+.icon {
+    color: white;
 }
 
 .fas:hover {
     transform: scale(1.16);
     color: #00CEE1;
 !important;
-}
-
-.page-link {
-    color: #3A23AD;
-!important;
-}
-
-.page-link:hover {
-    color: #00CEE1;
 }
 
 #navHeader {
@@ -103,10 +116,53 @@
 .searchSpringText {
     color: #3A23AD;
 }
+
 /*=======================================Dark Mode Classes*/
 
 
-.dMBackgroundColor{
-    background-color: black;!important;
+/*.dMBackgroundColor{*/
+/*    background-color: black;!important;*/
 
+/*}*/
+
+.dMBackgroundColor {
+    background-color: #333435;
+!important;
+}
+
+.dmBodyColor {
+    background-color: #1C1C1E;
+}
+
+.dmCardColor {
+    background-color: #262628;
+}
+
+.dmSearch {
+    background-color: #262628;
+    border: 1px solid black;
+}
+
+.dmIcon {
+    color: #393C3D;
+}
+
+.test{
+    border-radius: 35px;!important;
+}
+
+.test > li > a {
+    background-color: #393C3D;
+!important;
+    border-color: #393C3D;
+!important;
+    color: #666666;
+}
+
+.test > li > a:hover {
+    background-color: #666666;
+!important;
+    border-color: #666666;
+!important;
+    color: #393C3D;
 }
