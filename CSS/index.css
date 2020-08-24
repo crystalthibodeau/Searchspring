@@ -41,6 +41,7 @@
 }
 
 .return-to-top:hover i {
+    text-decoration: none;
     text-shadow: 2px 1px 2px #1C6EA4;
     color: #fff;
     top: 5px;

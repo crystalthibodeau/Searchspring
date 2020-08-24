@@ -57,7 +57,8 @@ if (document.getElementById("search") == null) {
 
 // ==========================Submits ajax request for catolog items when Navbar clicked=================================
 
-    function notEmptyLanding() {
+    function notEmptyLanding() { //e
+        // e.preventDefault();
         $('#demoForm').submit();
     }
 
@@ -149,6 +150,7 @@ if (document.getElementById("search") == null) {
 // ================================Loads the next page each time next button is clicked=================================
 
 function next() {
+    // e.preventDefault();
 
 
     //==========updates pagination number/matching page loaded with pagination clicks
@@ -175,6 +177,7 @@ function next() {
 // ================================Loads the previous page each time next button is clicked=================================
 
 function previous() {
+    // e.preventDefault();
 
     paginationNumber = paginationNumber - 1;
 
@@ -204,14 +207,17 @@ for (let i = 0; i < bothNext.length; i++) {
     bothPrevious[i].addEventListener("click", previous);
 }
 //======================########################===== Scroll to Top ====########################========================
-$(window).scroll(function () {
+$(window).scroll(function (e) {
+    e.preventDefault();
     if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
         $('#return-to-top').fadeIn(200);    // Fade in the arrow
     } else {
         $('#return-to-top').fadeOut(200);   // Else fade out the arrow
     }
 });
-$('#return-to-top').click(function () {      // When arrow is clicked
+$('#return-to-top').click(function (e) {
+    e.preventDefault();
+    // When arrow is clicked
     $('body,html').animate({
         scrollTop: 0                       // Scroll to top of body
     }, 500);
@@ -273,6 +279,7 @@ $('#return-to-top').click(function () {      // When arrow is clicked
 // }
 
 $("#darkMode").click(function () {
+    // e.preventDefault();
 
     var nav = document.getElementById("searchSpringNav");
     var navButton = document.getElementById("searchSpringNavButton");
