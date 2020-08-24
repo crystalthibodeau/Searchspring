@@ -45,8 +45,8 @@
 <!--    </div>-->
 <!--</div>-->
 
-<nav class="navbar w-100 sticky-top searchSpringNav d-flex justify-content-center justify-content-xl-between
-">
+<nav class="navbar w-100 searchSpringNav sticky-top d-flex justify-content-center justify-content-xl-between
+" id="searchSpringNav">
     <div id="navbarNav">
         <a class="navbar-brand d-lg-block text-monospace align-self-sm-center" href="#"><h2 id="navHeader">
             Searchspring</h2></a>
@@ -55,11 +55,13 @@
         <input class="form-control" type="text" placeholder="Search.." id="search"
                name="search" aria-label="Search"/>
         <div class="d-flex justify-content-center justify-content-xl-between">
-            <button type="submit" class="btn button p-2 searchSpringNav d-flex justify-content-center"><i
+            <button id="searchSpringNavButton" type="submit" class="searchSpringNav btn button p-2 d-flex justify-content-center"><i
                     class="fas align-self-sm-center fa-search p-0 m-0"></i>
             </button>
+
         </div>
     </form>
+    <button id="darkMode" type="submit" class="button p-2 d-flex justify-content-center">Dark Mode</button>
 </nav>
 <!--====================================End Of NavBar StART OF First Pagination======================================-->
 

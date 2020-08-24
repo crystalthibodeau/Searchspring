@@ -1,6 +1,4 @@
-
-
-function createCards(results, card){ //data.results
+function createCards(results, card) { //data.results
 
     card = "";
 
@@ -84,16 +82,17 @@ if (document.getElementById("search") == null) {
     //selects top and bottom pagination
     var paginationNumbers = document.getElementsByClassName("paginationNumber");
 
-    function paginationUpdate(){
+    function paginationUpdate() {
         for (let i = 0; i < paginationNumbers.length; i++) {
             document.getElementsByClassName("paginationNumber")[i].innerHTML = paginationNumber;
         }
     }
+
     paginationUpdate();
 
     // =============================================Start of first page load============================================
 
-    function Disable(a, b){
+    function Disable(a, b) {
 
         for (let i = 0; i < document.getElementsByClassName("previous").length; i++) {
 
@@ -172,6 +171,7 @@ function next() {
     })
 
 }
+
 // ================================Loads the previous page each time next button is clicked=================================
 
 function previous() {
@@ -271,4 +271,30 @@ $('#return-to-top').click(function () {      // When arrow is clicked
 // for (let i = 0; i < apiCallNums.length; i++) {
 //     apiCallNums[i].addEventListener("click", apiCallNum);
 // }
+
+$("#darkMode").click(function () {
+
+    var nav = document.getElementById("searchSpringNav");
+    var navButton = document.getElementById("searchSpringNavButton");
+
+    // ==========================first click/ to turn dark mode on
+    if(nav.classList.contains("searchSpringNav") && navButton.classList.contains("searchSpringNav")){
+
+        nav.classList.remove("searchSpringNav")
+        nav.classList.add("dMBackgroundColor");
+        navButton.classList.remove("searchSpringNav")
+        navButton.classList.add("dMBackgroundColor");
+
+    // ==========================second click/ to turn dark mode off
+    }else{
+
+        nav.classList.remove("dMBackgroundColor")
+        nav.classList.add("searchSpringNav");
+        navButton.classList.remove("dMBackgroundColor")
+        navButton.classList.add("searchSpringNav");
+
+    }
+
+
+});
 

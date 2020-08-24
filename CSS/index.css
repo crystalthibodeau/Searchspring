@@ -60,6 +60,7 @@
 .searchSpringNav {
     background-color: #3A23AD;
 }
+.dMBackgroundColor { background-color: black;!important; }
 
 .card {
     transition: transform .2s;
@@ -101,4 +102,11 @@
 
 .searchSpringText {
     color: #3A23AD;
+}
+/*=======================================Dark Mode Classes*/
+
+
+.dMBackgroundColor{
+    background-color: black;!important;
+
 }
