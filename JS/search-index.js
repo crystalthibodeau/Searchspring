@@ -57,13 +57,13 @@ if (document.getElementById("search") == null) {
 
 // ==========================Submits ajax request for catolog items when Navbar clicked=================================
 
-    function notEmptyLanding() { //e
-        // e.preventDefault();
+    $( "#navHeader" ).click(function() {
         $('#demoForm').submit();
-    }
+        console.log("inside submit landing")
+    });
 
-    var navHeader = document.getElementById("navHeader");
-    navHeader.addEventListener("click", notEmptyLanding);
+    // var navHeader = document.getElementById("navHeader");
+    // navHeader.addEventListener("click", notEmptyLanding);
 
 // =================================Checks media query for nav view in mobile===========================================
 
@@ -161,7 +161,7 @@ function next() {
     $.ajax("https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + (paginationNumber) + "/").done(function (data) {
 
         // console.log(data.results)
-
+        // console.log(notEmptyLanding())
         mediaQuery();
 
         paginationUpdate();
