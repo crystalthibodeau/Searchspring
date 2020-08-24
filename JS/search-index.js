@@ -299,17 +299,6 @@ $("#darkMode").click(function () {
 
     // ==========================first click/ to turn dark mode on
     if (nav.classList.contains("searchSpringNav") && navButton.classList.contains("searchSpringNav")) {
-        toTop.classList.add("return-to-topDM")
-        toTop.classList.remove("return-to-top")
-        submit.classList.add("dmIcon");
-        submit.classList.remove("icon");
-        body.classList.add("dmBodyColor");
-        container.classList.add("dmBodyColor");
-        nav.classList.remove("searchSpringNav")
-        nav.classList.add("dMBackgroundColor");
-        navButton.classList.remove("searchSpringNav")
-        navButton.classList.add("dMBackgroundColor");
-        search.classList.add("dmSearch")
 
         for (let i = 0; i < cards.length; i++) {
             cards[i].classList.add("dmCardColor");
@@ -318,9 +307,19 @@ $("#darkMode").click(function () {
             text[i].classList.add("dmText");
         }
 
+        toTop.classList.add("return-to-topDM");
+        toTop.classList.remove("return-to-top");
+        submit.classList.add("dmIcon");
+        submit.classList.remove("icon");
+        body.classList.add("dmBodyColor");
+        container.classList.add("dmBodyColor");
+        nav.classList.remove("searchSpringNav")
+        nav.classList.add("dMBackgroundColor");
+        navButton.classList.remove("searchSpringNav")
+        navButton.classList.add("dMBackgroundColor");
+        search.classList.add("dmSearch");
         pagLis.classList.add("test");
         pagLis2.classList.add("test");
-
 
         // ==========================second click/ to turn dark mode off
     } else {
@@ -333,16 +332,16 @@ $("#darkMode").click(function () {
         }
         pagLis.classList.remove("test");
         pagLis2.classList.remove("test");
-
+        toTop.classList.remove("return-to-topDM");
         submit.classList.add("icon");
         submit.classList.remove("dmIcon");
         container.classList.remove("dmBodyColor");
         body.classList.remove("dmBodyColor");
-        nav.classList.remove("dMBackgroundColor")
+        nav.classList.remove("dMBackgroundColor");
         nav.classList.add("searchSpringNav");
-        navButton.classList.remove("dMBackgroundColor")
+        navButton.classList.remove("dMBackgroundColor");
         navButton.classList.add("searchSpringNav");
-        search.classList.remove("dmSearch")
+        search.classList.remove("dmSearch");
 
 
     }
