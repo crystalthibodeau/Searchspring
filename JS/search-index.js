@@ -283,11 +283,13 @@ $("#darkMode").click(function () {
     var submit = document.getElementById("icon");
     var pagLis = document.getElementById("pagLi");
     var pagLis2 = document.getElementById("pagLi2");
+    var toTop = document.getElementById("return-to-top");
 
 
     // ==========================first click/ to turn dark mode on
     if (nav.classList.contains("searchSpringNav") && navButton.classList.contains("searchSpringNav")) {
-
+        toTop.classList.add("return-to-topDM")
+        toTop.classList.remove("return-to-top")
         submit.classList.add("dmIcon");
         submit.classList.remove("icon");
         body.classList.add("dmBodyColor");

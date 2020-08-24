@@ -2,11 +2,10 @@
     height: 90vh;
     background-size: cover;
     opacity: .7;
-    /*background-color: black;*/
     background-image: url("../IMG/pexels-resized.jpg");
 }
 
-#return-to-top {
+.return-to-top {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -24,7 +23,7 @@
     transition: all 0.3s ease;
 }
 
-#return-to-top i {
+.return-to-top i {
     color: #fff;
     position: relative;
     left: 16px;
@@ -37,11 +36,11 @@
     transition: all 0.8s ease;
 }
 
-#return-to-top:hover {
+.return-to-top:hover {
     background: #00CEE1;;
 }
 
-#return-to-top:hover i {
+.return-to-top:hover i {
     text-shadow: 2px 1px 2px #1C6EA4;
     color: #fff;
     top: 5px;
@@ -147,7 +146,6 @@
 
 .dmIcon {
     color: black;
-/*//393C3D*/
 }
 
 .dmText{
@@ -164,4 +162,44 @@
     background-color: #666666;!important;
     border-color: #666666;!important;
     color: #393C3D;
+}
+
+.return-to-topDM {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333435;
+    width: 50px;
+    height: 50px;
+    text-decoration: none;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    display: none;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.return-to-topDM i {
+    color: #666;
+    position: relative;
+    left: 16px;
+    top: 13px;
+    font-size: 19px;
+    font-weight: bolder;
+    -webkit-transition: all 0.8s ease;
+    -moz-transition: all 0.8s ease;
+    -o-transition: all 0.8s ease;
+    transition: all 0.8s ease;
+}
+
+.return-to-topDM:hover {
+    background: #666666;;
+}
+
+.return-to-topDM:hover i {
+    text-decoration: none;
+    color: #393C3D;
+    top: 5px;
 }
