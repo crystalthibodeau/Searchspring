@@ -1,3 +1,61 @@
+// =================================Checks media query for nav view in mobile===========================================
+
+function mediaQuery() {
+    if (window.matchMedia("(max-width: 600px)").matches) {
+        document.getElementById("demoForm").classList.remove("form-inline")
+    } else {
+        document.getElementById("demoForm").classList.add("form-inline")
+    }
+}
+
+mediaQuery();
+// ====================================sets pagination number to 1 on load==========================================
+
+var paginationNumber = 1;
+
+//selects top and bottom pagination
+var paginationNumbers = document.getElementsByClassName("paginationNumber");
+
+function paginationUpdate() {
+    for (let i = 0; i < paginationNumbers.length; i++) {
+        document.getElementsByClassName("paginationNumber")[i].innerHTML = paginationNumber;
+    }
+}
+
+paginationUpdate();
+
+// =============================================Disable Pagination==================================================
+
+function Disable(pagNumber, set) {
+
+    for (let i = 0; i < document.getElementsByClassName("previous").length; i++) {
+
+        if (pagNumber === 1) {
+            if (!document.getElementsByClassName("previous")[i].classList.contains("disabled")) {
+                console.log("!previous.contains(disabled)")
+                document.getElementsByClassName("next")[i].classList.remove("disabled")
+                document.getElementsByClassName("previous")[i].classList.add("disabled")
+            }
+        }
+
+        if (pagNumber > 1 && pagNumber !== set) {
+            console.log("page greater than one ")
+            document.getElementsByClassName("previous")[i].classList.remove("disabled")
+            document.getElementsByClassName("next")[i].classList.remove("disabled")
+        }
+
+        if (pagNumber === set) {
+            console.log("page === set")
+            document.getElementsByClassName("previous")[i].classList.remove("disabled")
+            document.getElementsByClassName("next")[i].classList.add("disabled")
+        }
+
+    }
+
+}
+
+// ===============================================Creates Cards==========================================================
+
 function createCards(results, card) { //data.results
 
     card = "";
@@ -49,81 +107,15 @@ if (document.getElementById("search") == null) {
     if (searchParam != null) {
         searchString = searchParam.replace(/,|,\s/g, ",+");
     }
+    console.log("searchParam", searchParam);
+    console.log("search string", searchString)
+
 //==================Submits ajax request for catolog items when search strinig is empty====================================
 
     if (searchString === "") {
         $('#demoForm').submit();
     }
-
-// ==========================Submits ajax request for catolog items when Navbar clicked=================================
-
-    $( "#navHeader" ).click(function() {
-        $('#demoForm').submit();
-        console.log("inside submit landing")
-    });
-
-    // var navHeader = document.getElementById("navHeader");
-    // navHeader.addEventListener("click", notEmptyLanding);
-
-// =================================Checks media query for nav view in mobile===========================================
-
-    function mediaQuery() {
-        if (window.matchMedia("(max-width: 600px)").matches) {
-            document.getElementById("demoForm").classList.remove("form-inline")
-        } else {
-            document.getElementById("demoForm").classList.add("form-inline")
-        }
-    }
-
-    mediaQuery();
-    // ====================================sets pagination number to 1 on load==========================================
-
-    var paginationNumber = 1;
-
-    //selects top and bottom pagination
-    var paginationNumbers = document.getElementsByClassName("paginationNumber");
-
-    function paginationUpdate() {
-        for (let i = 0; i < paginationNumbers.length; i++) {
-            document.getElementsByClassName("paginationNumber")[i].innerHTML = paginationNumber;
-        }
-    }
-
-    paginationUpdate();
-
-    // =============================================Disable Pagination==================================================
-
-    function Disable(pagNumber, set) {
-
-        for (let i = 0; i < document.getElementsByClassName("previous").length; i++) {
-
-            if (pagNumber === 1) {
-                if (!document.getElementsByClassName("previous")[i].classList.contains("disabled")) {
-                    console.log("!previous.contains(disabled)")
-                    document.getElementsByClassName("next")[i].classList.remove("disabled")
-                    document.getElementsByClassName("previous")[i].classList.add("disabled")
-                }
-            }
-
-            if (pagNumber > 1 && pagNumber !== set) {
-                console.log("page greater than one ")
-                document.getElementsByClassName("previous")[i].classList.remove("disabled")
-                document.getElementsByClassName("next")[i].classList.remove("disabled")
-            }
-
-            if (pagNumber === set) {
-                console.log("page === set")
-                document.getElementsByClassName("previous")[i].classList.remove("disabled")
-                document.getElementsByClassName("next")[i].classList.add("disabled")
-            }
-
-        }
-
-    }
-
-
-    // =============================================Start of first page=================================================
-
+    // ===============================Submits page 1 only on load/search/and navbutton==================================
 
     var firstRun = "https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + 1 + "/";
     $.ajax(firstRun).done(function (data) {
@@ -132,22 +124,50 @@ if (document.getElementById("search") == null) {
         // Create the cards
         var ShoppingCard = "";
 
-        // =======================================start of dynamic pagination===============================================
-
-        // var pagination = "";
-        // pagination += '<li class="page-item disabled previous">' + '<a class="page-link paginationNumberPrevious" href="#" tabindex="-1" aria-disabled="true">Previous</a>\n' + ' </li>'
-        //
-        // for(let i =0; i < 5; i++ ){
-        //     pagination += '<li class="page-item apiCallNum"><a class="page-link paginationNumber" href="#">'+ (i + 1) +'</a></li>';
-        // }
-        // pagination += '<li class="page-item next">' + '<a class="page-link paginationNumberNext" href="#">Next</a>' + '</li>';
-        // console.log(pagination);
-
         createCards(data.results, ShoppingCard);//data.results
         // $("#pagLi").html(pagination);
 
     });
 }
+
+// ==========================Submits ajax request for catolog items when Navbar clicked=================================
+
+$("#navHeader").click(function () {
+    searchParam = "";
+    $.ajax("https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + 1 + "/").done(function (data) {
+        paginationNumber = 1;
+
+        mediaQuery();
+
+        // Create the cards
+        var ShoppingCard = "";
+
+        paginationUpdate();
+        Disable(paginationNumber, data.pagination.totalPages);
+
+        createCards(data.results, ShoppingCard);//data.results
+    });
+    console.log("inside submit landing")
+});
+
+// ==========================Submits ajax request for search item when submit clicked=================================
+
+$("#searchSpringNavButton").click(function () {
+    $.ajax("https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + 1 + "/").done(function (data) {
+        paginationNumber = 1;
+
+        mediaQuery();
+
+        // Create the cards
+        var ShoppingCard = "";
+
+        paginationUpdate();
+        Disable(paginationNumber, data.pagination.totalPages);
+
+        createCards(data.results, ShoppingCard);//data.results
+    });
+    console.log("inside submit landing")
+});
 
 
 // ================================Loads the next page each time next button is clicked=================================
@@ -284,3 +304,13 @@ $('#return-to-top').click(function (e) {
 
 
 
+// =======================================start of dynamic pagination===============================================
+
+// var pagination = "";
+// pagination += '<li class="page-item disabled previous">' + '<a class="page-link paginationNumberPrevious" href="#" tabindex="-1" aria-disabled="true">Previous</a>\n' + ' </li>'
+//
+// for(let i =0; i < 5; i++ ){
+//     pagination += '<li class="page-item apiCallNum"><a class="page-link paginationNumber" href="#">'+ (i + 1) +'</a></li>';
+// }
+// pagination += '<li class="page-item next">' + '<a class="page-link paginationNumberNext" href="#">Next</a>' + '</li>';
+// console.log(pagination);
