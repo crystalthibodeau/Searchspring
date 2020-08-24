@@ -1,7 +1,12 @@
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
 .jumbotron {
     height: 90vh;
     background-size: cover;
-    opacity: .7;
+    opacity: .1;
     background-image: url("../IMG/pexels-resized.jpg");
 }
 
@@ -56,9 +61,10 @@
     justify-content: center;
     /*border-radius: 35px;*/
 }
+
 .paginations a {
     color: #3A23AD;
-    background-color: #F1F3F9;
+    background-color: #F0F0F0;
     float: left;
     padding: 8px 16px;
     text-decoration: none;
@@ -68,14 +74,17 @@
     color: #00CEE1;
     background-color: #3A23AD;
 }
-.left-radius{
+
+.left-radius {
     border-bottom-left-radius: 35px;
     -webkit-border-top-left-radius: 35px;
 }
-.right-radius{
+
+.right-radius {
     border-bottom-right-radius: 35px;
     -webkit-border-top-right-radius: 35px;
 }
+
 .btn {
     background-color: white;
     color: #3A23AD;
@@ -149,19 +158,23 @@
     color: black;
 }
 
-.dmText{
+.dmText {
     color: lightgray;
 }
 
 .test > li > a {
-    background-color: #393C3D;!important;
-    border-color: #393C3D;!important;
+    background-color: #393C3D;
+!important;
+    border-color: #393C3D;
+!important;
     color: #666666;
 }
 
 .test > li > a:hover {
-    background-color: #666666;!important;
-    border-color: #666666;!important;
+    background-color: #666666;
+!important;
+    border-color: #666666;
+!important;
     color: #393C3D;
 }
 
@@ -182,6 +195,7 @@
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
+
 .return-to-topDM i {
     color: #666;
     position: relative;

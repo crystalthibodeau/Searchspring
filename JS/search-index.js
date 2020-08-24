@@ -93,23 +93,26 @@ if (document.getElementById("search") == null) {
 
     // =============================================Start of first page load============================================
 
-    function Disable(a, b) {
+    function Disable(pagNumber, set) {
 
         for (let i = 0; i < document.getElementsByClassName("previous").length; i++) {
 
-            if (a === 1) {
+            if (pagNumber === 1) {
                 if (!document.getElementsByClassName("previous")[i].classList.contains("disabled")) {
+                    console.log("!previous.contains(disabled)")
                     document.getElementsByClassName("next")[i].classList.remove("disabled")
                     document.getElementsByClassName("previous")[i].classList.add("disabled")
                 }
             }
 
-            if (a > 1) {
+            if (pagNumber > 1 && pagNumber !== set) {
+                console.log("page greater than one ")
                 document.getElementsByClassName("previous")[i].classList.remove("disabled")
                 document.getElementsByClassName("next")[i].classList.remove("disabled")
             }
 
-            if (a === b) {
+            if (pagNumber === set) {
+                console.log("page === set")
                 document.getElementsByClassName("previous")[i].classList.remove("disabled")
                 document.getElementsByClassName("next")[i].classList.add("disabled")
             }
