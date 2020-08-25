@@ -1,3 +1,10 @@
+var searchString;
+searchString = '';
+var urlSearchString = window.location.href;
+var url = new URL(urlSearchString);
+var searchParam = url.searchParams.get("search");
+console.log("first", searchParam);
+
 // =================================Checks media query for nav view in mobile===========================================
 
 function mediaQuery() {
@@ -32,20 +39,20 @@ function Disable(pagNumber, set) {
 
         if (pagNumber === 1) {
             if (!document.getElementsByClassName("previous")[i].classList.contains("disabled")) {
-                console.log("!previous.contains(disabled)")
+                // console.log("!previous.contains(disabled)")
                 document.getElementsByClassName("next")[i].classList.remove("disabled")
                 document.getElementsByClassName("previous")[i].classList.add("disabled")
             }
         }
 
         if (pagNumber > 1 && pagNumber !== set) {
-            console.log("page greater than one ")
+            // console.log("page greater than one ")
             document.getElementsByClassName("previous")[i].classList.remove("disabled")
             document.getElementsByClassName("next")[i].classList.remove("disabled")
         }
 
         if (pagNumber === set) {
-            console.log("page === set")
+            // console.log("page === set")
             document.getElementsByClassName("previous")[i].classList.remove("disabled")
             document.getElementsByClassName("next")[i].classList.add("disabled")
         }
@@ -59,7 +66,6 @@ function Disable(pagNumber, set) {
 function createCards(results, card) { //data.results
 
     card = "";
-
     for (let i = 0; i < results.length; i++) {
 
         var msrp = "";
@@ -99,89 +105,124 @@ function createCards(results, card) { //data.results
 if (document.getElementById("search") == null) {
     console.log("oops, null");
 } else {
-    var searchString;
-    searchString = '';
-    var urlSearchString = window.location.href;
-    var url = new URL(urlSearchString);
-    var searchParam = url.searchParams.get("search");
     if (searchParam != null) {
         searchString = searchParam.replace(/,|,\s/g, ",+");
     }
-    console.log("searchParam", searchParam);
-    console.log("search string", searchString)
 
 //==================Submits ajax request for catolog items when search strinig is empty====================================
 
     if (searchString === "") {
         $('#demoForm').submit();
     }
-    // ===============================Submits page 1 only on load/search/and navbutton==================================
+
+    function notEmptyLanding() { //e
+        // e.preventDefault();
+        $('#demoForm').submit();
+        $.ajax("https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + 1 + "/").done(function (data) {
+                    paginationNumber = 1;
+
+                    mediaQuery();
+
+                    // Create the cards
+                    var ShoppingCard = "";
+
+                    paginationUpdate();
+                    Disable(paginationNumber, data.pagination.totalPages);
+
+                    createCards(data.results, ShoppingCard);//data.results
+            //
+                });
+
+    }
+
+    var navHeader = document.getElementById("navHeader");
+    navHeader.addEventListener("click", notEmptyLanding);
+
+// ==========================Submits ajax request for catolog items when Navbar clicked=================================
+
+    // $("#navHeader").click(function () {
+    //     searchParam = "";
+    //
+    //
+    //
+    //     $.ajax("https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + 1 + "/").done(function (data) {
+    //         paginationNumber = 1;
+    //
+    //         mediaQuery();
+    //
+    //         // Create the cards
+    //         var ShoppingCard = "";
+    //
+    //         paginationUpdate();
+    //         Disable(paginationNumber, data.pagination.totalPages);
+    //
+    //         createCards(data.results, ShoppingCard);//data.results
+    //
+    //     });
+    //
+    //
+    // });
+
+    $("#searchSpringNavButton").click(function () {
+
+        $.ajax("https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + 1 + "/").done(function (data) {
+            paginationNumber = 1;
+            // console.log("after", searchParam);
+
+            mediaQuery();
+
+            // Create the cards
+            var ShoppingCard = "";
+
+            paginationUpdate();
+            Disable(paginationNumber, data.pagination.totalPages);
+
+            createCards(data.results, ShoppingCard);//data.results
+            console.log(data.pagination.totalPages);
+
+        });
+    });
+
+    // =============================================Start of first page=================================================
+
 
     var firstRun = "https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + 1 + "/";
     $.ajax(firstRun).done(function (data) {
         mediaQuery();
-        // console.log(data)
         // Create the cards
         var ShoppingCard = "";
 
+        // =======================================start of dynamic pagination===============================================
+
+        // var pagination = "";
+        // pagination += '<li class="page-item disabled previous">' + '<a class="page-link paginationNumberPrevious" href="#" tabindex="-1" aria-disabled="true">Previous</a>\n' + ' </li>'
+        //
+        // for(let i =0; i < 5; i++ ){
+        //     pagination += '<li class="page-item apiCallNum"><a class="page-link paginationNumber" href="#">'+ (i + 1) +'</a></li>';
+        // }
+        // pagination += '<li class="page-item next">' + '<a class="page-link paginationNumberNext" href="#">Next</a>' + '</li>';
+        // console.log(pagination);
+
         createCards(data.results, ShoppingCard);//data.results
+        console.log(data.pagination.totalPages);
+
         // $("#pagLi").html(pagination);
 
     });
 }
-
-// ==========================Submits ajax request for catolog items when Navbar clicked=================================
-
-$("#navHeader").click(function () {
-    searchParam = "";
-    $.ajax("https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + 1 + "/").done(function (data) {
-        paginationNumber = 1;
-
-        mediaQuery();
-
-        // Create the cards
-        var ShoppingCard = "";
-
-        paginationUpdate();
-        Disable(paginationNumber, data.pagination.totalPages);
-
-        createCards(data.results, ShoppingCard);//data.results
-    });
-    console.log("inside submit landing")
-});
-
-// ==========================Submits ajax request for search item when submit clicked=================================
-
-$("#searchSpringNavButton").click(function () {
-    $.ajax("https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + 1 + "/").done(function (data) {
-        paginationNumber = 1;
-
-        mediaQuery();
-
-        // Create the cards
-        var ShoppingCard = "";
-
-        paginationUpdate();
-        Disable(paginationNumber, data.pagination.totalPages);
-
-        createCards(data.results, ShoppingCard);//data.results
-    });
-    console.log("inside submit landing")
-});
 
 
 // ================================Loads the next page each time next button is clicked=================================
 
 function next() {
     // e.preventDefault();
-
+    console.log("next")
 
     //==========updates pagination number/matching page loaded with pagination clicks
     paginationNumber = paginationNumber + 1;
     $.ajax("https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + (paginationNumber) + "/").done(function (data) {
+        console.log("next", searchParam);
 
-        // console.log(data.results)
-        // console.log(notEmptyLanding())
         mediaQuery();
 
         paginationUpdate();
@@ -191,6 +232,7 @@ function next() {
         var ShoppingCard = "";
 
         createCards(data.results, ShoppingCard);//data.results
+        console.log(data.pagination.totalPages);
 
 
     })
@@ -205,6 +247,7 @@ function previous() {
     paginationNumber = paginationNumber - 1;
 
     $.ajax("https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + (paginationNumber) + "/").done(function (data) {
+        console.log("previous", searchParam);
 
         paginationUpdate();
 
@@ -213,6 +256,7 @@ function previous() {
         var ShoppingCard = "";
 
         createCards(data.results, ShoppingCard);
+        // console.log(data.pagination.totalPages);
 
 
     })
@@ -304,13 +348,3 @@ $('#return-to-top').click(function (e) {
 
 
 
-// =======================================start of dynamic pagination===============================================
-
-// var pagination = "";
-// pagination += '<li class="page-item disabled previous">' + '<a class="page-link paginationNumberPrevious" href="#" tabindex="-1" aria-disabled="true">Previous</a>\n' + ' </li>'
-//
-// for(let i =0; i < 5; i++ ){
-//     pagination += '<li class="page-item apiCallNum"><a class="page-link paginationNumber" href="#">'+ (i + 1) +'</a></li>';
-// }
-// pagination += '<li class="page-item next">' + '<a class="page-link paginationNumberNext" href="#">Next</a>' + '</li>';
-// console.log(pagination);
