@@ -3,7 +3,26 @@ searchString = '';
 var urlSearchString = window.location.href;
 var url = new URL(urlSearchString);
 var searchParam = url.searchParams.get("search");
-console.log("first", searchParam);
+// console.log("first", searchParam);
+var dMFlag = false;
+var protocol = window.location.protocol,
+    host = '//' + window.location.host,
+    path = window.location.pathname,
+    query = window.location.search;
+
+var newUrl = protocol + host + path + query + (query ? '&' : '?') + '?theme';
+
+// window.history.pushState({path:newUrl}, '' , newUrl);
+// var theme;
+// theme = "standard";
+// urlSearchString = urlSearchString + "?"+ theme;
+
+// var protocol = window.location.protocol,
+//     host = '//' + window.location.host,
+//     path = window.location.pathname,
+//     query = window.location.search;
+
+// var newUrl = protocol + host + path + query + (query ? '&' : '?') + 'theme=1';
 
 // =================================Checks media query for nav view in mobile===========================================
 
@@ -114,27 +133,48 @@ if (document.getElementById("search") == null) {
     if (searchString === "") {
         $('#demoForm').submit();
     }
+
 // ==========================Submits ajax request for catolog items when Navbar clicked=================================
 
 
     function notEmptyLanding() {
         //e
+
         // e.preventDefault();
-        $('#demoForm').submit();
+        var themeString = window.location.href.toLowerCase().toString().split("?");
+        var string = themeString[2];
+
+        console.log("outside if", string);
+        if(string === "theme" || string === "theme#"){
+            console.log("inside if 1", string);
+            dMFlag = true;
+            darkMode(dMFlag);
+            // window.history.pushState({path:newUrl}, '' , newUrl);
+        }
+        // $('#demoForm').submit();
+
         $.ajax("https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + 1 + "/").done(function (data) {
-                    paginationNumber = 1;
+            console.log("ajax");
+            paginationNumber = 1;
+            // console.log(window.location.href)
 
-                    mediaQuery();
+            mediaQuery();
 
-                    // Create the cards
-                    var ShoppingCard = "";
+            // Create the cards
+            var ShoppingCard = "";
 
-                    paginationUpdate();
-                    Disable(paginationNumber, data.pagination.totalPages);
+            paginationUpdate();
+            Disable(paginationNumber, data.pagination.totalPages);
 
-                    createCards(data.results, ShoppingCard);//data.results
+            createCards(data.results, ShoppingCard);//data.results
             //
-                });
+        });
+
+        if(string === "theme" || string === "theme#"){
+            console.log("inside if 2", string);
+            dMFlag = true;
+            darkMode(dMFlag);
+        }
 
     }
 
@@ -180,7 +220,7 @@ if (document.getElementById("search") == null) {
             Disable(paginationNumber, data.pagination.totalPages);
 
             createCards(data.results, ShoppingCard);//data.results
-            console.log(data.pagination.totalPages);
+            // console.log(data.pagination.totalPages);
 
         });
     });
@@ -206,7 +246,7 @@ if (document.getElementById("search") == null) {
         // console.log(pagination);
 
         createCards(data.results, ShoppingCard);//data.results
-        console.log(data.pagination.totalPages);
+        // console.log(data.pagination.totalPages);
 
         // $("#pagLi").html(pagination);
 
@@ -218,12 +258,12 @@ if (document.getElementById("search") == null) {
 
 function next() {
     // e.preventDefault();
-    console.log("next")
+    // console.log("next")
 
     //==========updates pagination number/matching page loaded with pagination clicks
     paginationNumber = paginationNumber + 1;
     $.ajax("https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + (paginationNumber) + "/").done(function (data) {
-        console.log("next", searchParam);
+        // console.log("next", searchParam);
 
         mediaQuery();
 
@@ -234,7 +274,7 @@ function next() {
         var ShoppingCard = "";
 
         createCards(data.results, ShoppingCard);//data.results
-        console.log(data.pagination.totalPages);
+        // console.log(data.pagination.totalPages);
 
 
     })
@@ -249,7 +289,7 @@ function previous() {
     paginationNumber = paginationNumber - 1;
 
     $.ajax("https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + (paginationNumber) + "/").done(function (data) {
-        console.log("previous", searchParam);
+        // console.log("previous", searchParam);
 
         paginationUpdate();
 
@@ -348,5 +388,98 @@ $('#return-to-top').click(function (e) {
 //     apiCallNums[i].addEventListener("click", apiCallNum);
 // }
 
+function dMClick(){ // clicks % 2 === 0 === number is even
+    dMFlag = !dMFlag;
+    darkMode(dMFlag);
+}
+
+function darkMode(flag) {
+    // e.preventDefault();
+    // var testThis = window.history.pushState({path:newUrl}, '' , newUrl);
+    console.log("inside darkmode")
+    if(flag){
+        // console.log(window.location.href)
+        var nav = document.getElementById("searchSpringNav");
+        var navButton = document.getElementById("searchSpringNavButton");
+        var body = document.getElementById("body");
+        var container = document.getElementById("mainContainer");
+        var cards = document.getElementsByClassName("card-body");
+        var search = document.getElementById("search");
+        var submit = document.getElementById("icon");
+        var pagLis = document.getElementById("pagLi");
+        var pagLis2 = document.getElementById("pagLi2");
+        var toTop = document.getElementById("return-to-top");
+        var text = document.getElementsByClassName("text");
+
+
+        // ==========================first click/ to turn dark mode on
+        if (nav.classList.contains("searchSpringNav") && navButton.classList.contains("searchSpringNav")) {
+
+            for (let i = 0; i < cards.length; i++) {
+                cards[i].classList.add("dmCardColor");
+            }
+            for (let i = 0; i < text.length; i++) {
+                text[i].classList.add("dmText");
+            }
+
+            toTop.classList.add("return-to-topDM");
+            toTop.classList.remove("return-to-top");
+            submit.classList.add("dmIcon");
+            submit.classList.remove("icon");
+            body.classList.add("dmBodyColor");
+            container.classList.add("dmBodyColor");
+            nav.classList.remove("searchSpringNav")
+            nav.classList.add("dMBackgroundColor");
+            navButton.classList.remove("searchSpringNav")
+            navButton.classList.add("dMBackgroundColor");
+            search.classList.add("dmSearch");
+            pagLis.classList.add("test");
+            pagLis2.classList.add("test");
+
+            // ==========================second click/ to turn dark mode off
+        } else {
+
+            for (let i = 0; i < cards.length; i++) {
+                cards[i].classList.remove("dmCardColor");
+            }
+            for (let i = 0; i < text.length; i++) {
+                text[i].classList.remove("dmText");
+            }
+            pagLis.classList.remove("test");
+            pagLis2.classList.remove("test");
+            toTop.classList.remove("return-to-topDM");
+            submit.classList.add("icon");
+            submit.classList.remove("dmIcon");
+            container.classList.remove("dmBodyColor");
+            body.classList.remove("dmBodyColor");
+            nav.classList.remove("dMBackgroundColor");
+            nav.classList.add("searchSpringNav");
+            navButton.classList.remove("dMBackgroundColor");
+            navButton.classList.add("searchSpringNav");
+            search.classList.remove("dmSearch");
+
+
+        }
+
+
+    }
+    dMURL(flag);
+}
+
+function dMURL(flag){
+
+    if(flag === true){
+        for(let i = 0; i < 1; i++){
+            // console.log(flag)
+            window.history.pushState({path:newUrl}, '' , newUrl);
+            break;
+        }
+    }else if(flag === false){
+        window.history.pushState({path:protocol + host + path + query + (query ? '&' : '?')}, '');
+    }
+
+}
+
+$("#darkMode").on("click", dMClick)
 
 
