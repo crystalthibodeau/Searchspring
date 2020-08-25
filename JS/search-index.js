@@ -109,13 +109,16 @@ if (document.getElementById("search") == null) {
         searchString = searchParam.replace(/,|,\s/g, ",+");
     }
 
-//==================Submits ajax request for catolog items when search strinig is empty====================================
+//==================Submits ajax request for catolog items when search string is empty on load==========================
 
     if (searchString === "") {
         $('#demoForm').submit();
     }
+// ==========================Submits ajax request for catolog items when Navbar clicked=================================
 
-    function notEmptyLanding() { //e
+
+    function notEmptyLanding() {
+        //e
         // e.preventDefault();
         $('#demoForm').submit();
         $.ajax("https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + 1 + "/").done(function (data) {
@@ -138,7 +141,6 @@ if (document.getElementById("search") == null) {
     var navHeader = document.getElementById("navHeader");
     navHeader.addEventListener("click", notEmptyLanding);
 
-// ==========================Submits ajax request for catolog items when Navbar clicked=================================
 
     // $("#navHeader").click(function () {
     //     searchParam = "";

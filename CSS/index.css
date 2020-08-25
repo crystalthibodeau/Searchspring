@@ -121,8 +121,13 @@
 }
 
 #navHeader {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    text-decoration: none;
     transition: transform .2s ease-in-out;
     color: lightgrey;
+    font-size: xx-large;
 }
 
 #navHeader:hover {
