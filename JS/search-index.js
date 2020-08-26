@@ -48,6 +48,7 @@ function darkLight() {
 
 
 function onLoad() {
+    // searchButton.scrollIntoView();
     $.ajax("https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + (paginationNumber) + "/").done(function (data) {
         paginationNumber = 1;
         mediaQuery();
@@ -56,12 +57,17 @@ function onLoad() {
         paginationUpdate();
         Disable(paginationNumber, data.pagination.totalPages);
         createCards(data.results, ShoppingCard);//data.results
-
     });
+
 }
 onLoad();
+//
+// function clickRedirect(){
+//     document.getElementById("mainContainer").scrollIntoView();
+// }
 
 searchButton.addEventListener("click", onLoad);
+// searchButton.addEventListener("click", clickRedirect);
 
 // ==========================Submits ajax request for catolog items when Navbar clicked=================================
 
