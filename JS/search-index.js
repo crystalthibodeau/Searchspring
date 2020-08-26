@@ -223,10 +223,15 @@ for (let i = 0; i < bothNext.length; i++) {
 //======================########################===== Scroll to Top ====########################========================
 $(window).scroll(function (e) {
     e.preventDefault();
-    if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
-        $('#return-to-top').fadeIn(200);    // Fade in the arrow
-    } else {
-        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+    console.log($(window).width());
+    if($(window).width() < 652){
+        $("#return-to-top").hide();
+    }else{
+        if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+            $('#return-to-top').fadeIn(200);    // Fade in the arrow
+        } else {
+            $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+        }
     }
 });
 $('#return-to-top').click(function (e) {
