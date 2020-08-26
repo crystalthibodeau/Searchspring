@@ -30,6 +30,11 @@ var searchButton = document.getElementById("searchSpringNavButton");
 
 $("#main").toggleClass(localStorage.toggled);
 
+if ($('main').hasClass('dark')) {
+    $( '#checkBox' ).prop( "checked", true )
+} else {
+    $( '#checkBox' ).prop( "checked", false )
+}
 
 function darkLight() {
     if (localStorage.toggled !== 'dark') {
@@ -41,11 +46,6 @@ function darkLight() {
     }
 }
 
-if ($('main').hasClass('dark')) {
-    $( '#checkBox' ).prop( "checked", true )
-} else {
-    $( '#checkBox' ).prop( "checked", false )
-}
 
 function onLoad() {
     $.ajax("https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + (paginationNumber) + "/").done(function (data) {
