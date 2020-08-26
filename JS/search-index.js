@@ -8,7 +8,6 @@ searchString = '';
 var urlSearchString = window.location.href;
 var url = new URL(urlSearchString);
 var searchParam = url.searchParams.get("search");
-var dMFlag = false;
 var protocol = window.location.protocol,
     host = '//' + window.location.host,
     path = window.location.pathname,
@@ -60,13 +59,8 @@ function onLoad() {
 
 }
 onLoad();
-//
-// function clickRedirect(){
-//     document.getElementById("mainContainer").scrollIntoView();
-// }
 
 searchButton.addEventListener("click", onLoad);
-// searchButton.addEventListener("click", clickRedirect);
 
 // ==========================Submits ajax request for catolog items when Navbar clicked=================================
 
