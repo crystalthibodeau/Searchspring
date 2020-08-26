@@ -18,50 +18,50 @@
         .display-1 {
             font-family: "Bradley Hand";
             font-weight: bolder;
+            color:white;
         }
     </style>
 </head>
 
 <body id="main" class="body">
+<nav class="navbar w-100 fixed-top d-flex" id="LandingNav">
 
+    <a href="landing.html" class="searchSpring navbar-brand d-lg-block text-monospace align-self-sm-center">Searchspring</a>
+    <div id="navbarNav">
+        <a id="navHeader" href="index.html" class="navbar-brand d-lg-block text-monospace align-self-sm-center">Catalog</a>
+    </div>
+
+    <form action="#" method="get" class="form-inline" id="demoForm">
+        <input class="form-control" type="text" placeholder="Search.." id="search"
+               name="search" aria-label="Search"/>
+        <div class="d-flex justify-content-center justify-content-xl-between">
+            <a id="searchSpringNavButton" href="index.html" class="button p-2 d-flex justify-content-center"><i
+                    class="fas align-self-sm-center fa-search icon p-0 m-0" id="icon"></i></a>
+            <!--                <button id="searchSpringNavButton" type="submit" class="button p-2 d-flex justify-content-center"><i-->
+            <!--                        class="fas align-self-sm-center fa-search icon p-0 m-0" id="icon"></i>-->
+            <!--                </button>-->
+        </div>
+    </form>
+    <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+            Settings
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <p> Dark Mode </p>
+            <label class="switch">
+                <input type="checkbox" onclick="darkLight()" id="checkBox">
+                <span class="slider"></span>
+            </label>
+
+        </div>
+    </div>
+
+</nav>
 <div class="jumbotron jumbotron-fluid m-0 p-0 d-flex align-items-center justify-content-center">
     <div class="container">
         <h1 class="text-right display-1">Shop your way!</h1>
     </div>
-    <nav class="navbar w-100 fixed-top d-flex" id="searchSpringNav">
-
-        <a href="landing.html" class="searchSpring navbar-brand d-lg-block text-monospace align-self-sm-center">Searchspring</a>
-        <div id="navbarNav">
-            <a id="navHeader" href="index.html" class="navbar-brand d-lg-block text-monospace align-self-sm-center">Catalog</a>
-        </div>
-
-        <form action="#" method="get" class="form-inline" id="demoForm">
-            <input class="form-control" type="text" placeholder="Search.." id="search"
-                   name="search" aria-label="Search"/>
-            <div class="d-flex justify-content-center justify-content-xl-between">
-                <a id="searchSpringNavButton" href="index.html" class="button p-2 d-flex justify-content-center"><i
-                        class="fas align-self-sm-center fa-search icon p-0 m-0" id="icon"></i></a>
-<!--                <button id="searchSpringNavButton" type="submit" class="button p-2 d-flex justify-content-center"><i-->
-<!--                        class="fas align-self-sm-center fa-search icon p-0 m-0" id="icon"></i>-->
-<!--                </button>-->
-            </div>
-        </form>
-        <div class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
-                Settings
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <p> Dark Mode </p>
-                <label class="switch">
-                    <input type="checkbox" onclick="darkLight()" id="checkBox">
-                    <span class="slider"></span>
-                </label>
-
-            </div>
-        </div>
-
-    </nav>
 </div>
 
 

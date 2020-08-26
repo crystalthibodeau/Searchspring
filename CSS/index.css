@@ -118,10 +118,16 @@
     background-color: #1C1C1E;
 }
 
-.dark > #searchSpringNav {
+.dark #searchSpringNav {
     background-color: #333435;
 }
-
+/*LandingNav*/
+.dark #LandingNav {
+    background-color: #333435;
+}
+#LandingNav {
+    background-color: #3A23AD;
+}
 /*======================End of Dark Mode Classes========================*/
 
 .switch {
