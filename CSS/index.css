@@ -1,7 +1,16 @@
 
 
 /*=======================================Dark Mode Classes*/
-
+#searchSpringNavButton{
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    vertical-align: middle;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.dark > .fas{
+    color: black;!important;
+}
 /*/not working/*/
 .dark > .paginations a {
     background-color: #393C3D;
