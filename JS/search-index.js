@@ -30,11 +30,6 @@ var searchButton = document.getElementById("searchSpringNavButton");
 
 $("#main").toggleClass(localStorage.toggled);
 
-if ($('main').hasClass('dark')) {
-    $( '#checkBox' ).prop( "checked", true )
-} else {
-    $( '#checkBox' ).prop( "checked", false )
-}
 
 function darkLight() {
     if (localStorage.toggled !== 'dark') {
@@ -45,7 +40,11 @@ function darkLight() {
         localStorage.toggled = "";
     }
 }
-
+if ($('main').hasClass('dark')) {
+    $( '#checkBox' ).prop( "checked", true )
+} else {
+    $( '#checkBox' ).prop( "checked", false )
+}
 
 function onLoad() {
     // searchButton.scrollIntoView();
