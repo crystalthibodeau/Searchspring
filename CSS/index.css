@@ -75,11 +75,6 @@
     background-color: #333435;
 }
 
-#searchSpringNav {
-    background-color: #3A23AD;
-}
-
-
 .fas:hover {
     transform: scale(1.16);
     color: #00CEE1;
@@ -149,6 +144,10 @@ input:checked + .slider:before {
 .disabled {
     pointer-events: none;
     opacity: 0.5;
+}
+
+#searchSpringNav {
+    background-color: #3A23AD;
 }
 
 .jumbotron {
