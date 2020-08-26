@@ -48,7 +48,7 @@ if ($('main').hasClass('dark')) {
 
 function onLoad() {
     // searchButton.scrollIntoView();
-    $.ajax("https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + (paginationNumber) + "/").done(function (data) {
+    $.ajax("https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + (1) + "/").done(function (data) {
         paginationNumber = 1;
         mediaQuery();
         // Create the cards
