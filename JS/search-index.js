@@ -194,9 +194,9 @@ function createCards(results, card) { //data.results
         }
 
         card += '<div class="mb-4 col-12 col-sm-6 col-md-4 col-lg-4">';
-        card += '<div class="card shadow bg-white rounded">';
+        card += '<div class="productCard shadow bg-white rounded">';
         card += '<img class="card-img-top img-fluid" src="' + results[i].thumbnailImageUrl + '" alt="Card image" />';
-        card += '<div class="card-body">';
+        card += '<div class="cardBody">';
         card += '<h4 class="textColor">' + results[i].title + '</h4>';
         card += '<div class="d-flex justify-content-center">';
         card += '<h4 class="textColor px-1">' + "$" + results[i].price + '</h4>'

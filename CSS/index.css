@@ -1,5 +1,22 @@
-
-
+.cardBody {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+    background-color: white;
+}
+.productCard {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border-radius: .25rem;
+}
 /*=======================================Dark Mode Classes*/
 #searchSpringNavButton{
     background-color: transparent;
@@ -24,11 +41,15 @@
     color: #393C3D;
 }
 
-.dark > .textColor {
+.dark .textColor {
     color: #86898B; !important;
 }
 
-.dark > .card > .card-body {
+.dark .cardBody {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
     background-color: #262628;!important;
 }
 
