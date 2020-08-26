@@ -15,13 +15,12 @@
     color: #393C3D;
 }
 
-.dark > .card > .text {
-    color: #86898B;
+.dark > .textColor {
+    color: #86898B; !important;
 }
 
 .dark > .card > .card-body {
-    background-color: #262628;
-!important;
+    background-color: #262628;!important;
 }
 
 
@@ -79,6 +78,16 @@
     transform: scale(1.16);
     color: #00CEE1;
 !important;
+}
+
+
+.fas{
+    color: white;!important;
+}
+
+.fas.dark{
+    color: black;!important;
+
 }
 
 /*======================End of Dark Mode Classes========================*/

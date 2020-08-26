@@ -33,10 +33,10 @@ $("#main").toggleClass(localStorage.toggled);
 
 function darkLight() {
     if (localStorage.toggled !== 'dark') {
-        $('#main').toggleClass('dark');
+        $('#main, #searchSpringNavButton').toggleClass('dark');
         localStorage.toggled = "dark";
     } else {
-        $('#main').toggleClass('dark', false);
+        $('#main, #searchSpringNavButton').toggleClass('dark', false);
         localStorage.toggled = "";
     }
 }
@@ -197,9 +197,9 @@ function createCards(results, card) { //data.results
         card += '<div class="card shadow bg-white rounded">';
         card += '<img class="card-img-top img-fluid" src="' + results[i].thumbnailImageUrl + '" alt="Card image" />';
         card += '<div class="card-body">';
-        card += '<h4 class="text">' + results[i].title + '</h4>';
+        card += '<h4 class="textColor">' + results[i].title + '</h4>';
         card += '<div class="d-flex justify-content-center">';
-        card += '<h4 class="text px-1">' + "$" + results[i].price + '</h4>'
+        card += '<h4 class="textColor px-1">' + "$" + results[i].price + '</h4>'
         card += msrp;
         card += '</div>';
         card += '</div>';
