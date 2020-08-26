@@ -33,10 +33,10 @@ $("#main").toggleClass(localStorage.toggled);
 
 function darkLight() {
     if (localStorage.toggled !== 'dark') {
-        $('#main, #searchSpringNavButton').toggleClass('dark');
+        $('#main').toggleClass('dark');
         localStorage.toggled = "dark";
     } else {
-        $('#main, #searchSpringNavButton').toggleClass('dark', false);
+        $('#main').toggleClass('dark', false);
         localStorage.toggled = "";
     }
 }
