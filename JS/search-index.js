@@ -2,17 +2,7 @@
 // if (searchParam != null) {
 //     searchString = searchParam.replace(/,|,\s/g, ",+");
 // }
-var nav = document.getElementById("searchSpringNav");
-var navButton = document.getElementById("searchSpringNavButton");
-var body = document.getElementById("body");
-var container = document.getElementById("mainContainer");
-var cards = document.getElementsByClassName("card-body");
-var search = document.getElementById("search");
-var submit = document.getElementById("icon");
-var pagLis = document.getElementById("pagLi");
-var pagLis2 = document.getElementById("pagLi2");
-var toTop = document.getElementById("return-to-top");
-var text = document.getElementsByClassName("text");
+
 var searchString;
 searchString = '';
 var urlSearchString = window.location.href;
@@ -23,38 +13,34 @@ var protocol = window.location.protocol,
     host = '//' + window.location.host,
     path = window.location.pathname,
     query = window.location.search;
+
 if(searchParam === null){
     searchParam = "";
 }
-console.log(searchParam);
+
 var newUrl = protocol + host + path + query + (query ? '&' : '?') + '?theme';
 var baseURL = protocol + host + path + query + (query ? '&' : '?');
 var paginationNumber = 1;
 //selects top and bottom pagination
 var paginationNumbers = document.getElementsByClassName("paginationNumber");
-
 var themeString = window.location.href.toLowerCase().toString().split("?");
 var string = themeString[2];
 // console.log("outside if", string);
-if (string === "theme" || string === "theme#") {
-    dMFlag = true;
-    darkMode(dMFlag);
-}
 var searchButton = document.getElementById("searchSpringNavButton");
-
 
 $("#main").toggleClass(localStorage.toggled);
 
-function darkLight() {
-    if (localStorage.toggled != 'dark') {
 
-        $('#main').toggleClass('dark', true);
+function darkLight() {
+    if (localStorage.toggled !== 'dark') {
+        $('#main').toggleClass('dark');
         localStorage.toggled = "dark";
     } else {
         $('#main').toggleClass('dark', false);
         localStorage.toggled = "";
     }
 }
+
 if ($('main').hasClass('dark')) {
     $( '#checkBox' ).prop( "checked", true )
 } else {
