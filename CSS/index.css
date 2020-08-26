@@ -192,9 +192,9 @@ input:checked + .slider:before {
 }
 
 .jumbotron {
-    height: 90vh;
+    height: 100vh;
     background-size: cover;
-    opacity: .1;
+    opacity: .8;
     background-image: url("../IMG/pexels-resized.jpg");
 }
 
