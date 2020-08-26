@@ -17,7 +17,6 @@
     background-clip: border-box;
     border-radius: .25rem;
 }
-/*=======================================Dark Mode Classes*/
 #searchSpringNavButton{
     background-color: transparent;
     border: none;
@@ -25,17 +24,36 @@
     vertical-align: middle;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
-.dark > .fas{
+/*=======================================Dark Mode Classes*/
+
+.dark #search{
+    background-color: #262628;
+    border: 1px solid black;
+}
+
+
+.fas:hover {
+    transform: scale(1.16);
+    color: #00CEE1;
+!important;
+}
+
+.fas{
+    color: white;!important;
+}
+
+.dark .fas {
     color: black;!important;
+
 }
 /*/not working/*/
-.dark > .paginations a {
+.dark .paginations a {
     background-color: #393C3D;
     border-color: #393C3D;
     color: #666666;
 }
 
-.dark > .paginations a:hover {
+.dark .paginations a:hover {
     background-color: #666666;
     border-color: #666666;
     color: #393C3D;
@@ -102,22 +120,6 @@
 
 .dark > #searchSpringNav {
     background-color: #333435;
-}
-
-.fas:hover {
-    transform: scale(1.16);
-    color: #00CEE1;
-!important;
-}
-
-
-.fas{
-    color: white;!important;
-}
-
-.fas.dark{
-    color: black;!important;
-
 }
 
 /*======================End of Dark Mode Classes========================*/
@@ -241,7 +243,13 @@ input:checked + .slider:before {
 .strike {
     text-decoration: line-through;
 }
-
+.paginationed {
+    display: -ms-flexbox;
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: .25rem;
+}
 .paginations {
     display: flex;
     justify-content: center;
