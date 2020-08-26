@@ -2,6 +2,17 @@
 // if (searchParam != null) {
 //     searchString = searchParam.replace(/,|,\s/g, ",+");
 // }
+var nav = document.getElementById("searchSpringNav");
+var navButton = document.getElementById("searchSpringNavButton");
+var body = document.getElementById("body");
+var container = document.getElementById("mainContainer");
+var cards = document.getElementsByClassName("card-body");
+var search = document.getElementById("search");
+var submit = document.getElementById("icon");
+var pagLis = document.getElementById("pagLi");
+var pagLis2 = document.getElementById("pagLi2");
+var toTop = document.getElementById("return-to-top");
+var text = document.getElementsByClassName("text");
 var searchString;
 searchString = '';
 var urlSearchString = window.location.href;
@@ -29,10 +40,28 @@ if (string === "theme" || string === "theme#") {
     dMFlag = true;
     darkMode(dMFlag);
 }
-
 var searchButton = document.getElementById("searchSpringNavButton");
-function onLoad() {
 
+
+$("#main").toggleClass(localStorage.toggled);
+
+function darkLight() {
+    if (localStorage.toggled != 'dark') {
+
+        $('#main').toggleClass('dark', true);
+        localStorage.toggled = "dark";
+    } else {
+        $('#main').toggleClass('dark', false);
+        localStorage.toggled = "";
+    }
+}
+if ($('main').hasClass('dark')) {
+    $( '#checkBox' ).prop( "checked", true )
+} else {
+    $( '#checkBox' ).prop( "checked", false )
+}
+
+function onLoad() {
     $.ajax("https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + (paginationNumber) + "/").done(function (data) {
         paginationNumber = 1;
         mediaQuery();
@@ -51,21 +80,21 @@ searchButton.addEventListener("click", onLoad);
 // ==========================Submits ajax request for catolog items when Navbar clicked=================================
 
 function clickHeader() {
-    var themeString = window.location.href.toLowerCase().toString().split("?");
-    var string = themeString[2];
-    console.log("outside if", string);
-    if (string === "theme" || string === "theme#") {
-        dMFlag = true;
-        darkMode(dMFlag);
-        $('#demoForm').submit(
-            function () {
-                darkMode(true);
-            }
-        );
-    }else{
-        $('#demoForm').submit();
-    }
-    window.history.pushState({path: baseURL}, '', baseURL);
+    // var themeString = window.location.href.toLowerCase().toString().split("?");
+    // var string = themeString[2];
+    // console.log("outside if", string);
+    // if (string === "theme" || string === "theme#") {
+    //     dMFlag = true;
+    //     darkMode(dMFlag);
+    //     $('#demoForm').submit(
+    //         function () {
+    //             darkMode(true);
+    //         }
+    //     );
+    // }else{
+    //     $('#demoForm').submit();
+    // }
+    // window.history.pushState({path: baseURL}, '', baseURL);
 
 
     searchParam = "";
@@ -80,10 +109,10 @@ function clickHeader() {
         createCards(data.results, ShoppingCard);//data.results
     });
 
-    if (string === "theme" || string === "theme#") {
-        dMFlag = true;
-        darkMode(dMFlag);
-    }
+    // if (string === "theme" || string === "theme#") {
+    //     dMFlag = true;
+    //     darkMode(dMFlag);
+    // }
 
 }
 
@@ -245,91 +274,91 @@ $('#return-to-top').click(function (e) {
     }, 500);
 });
 
-
-function dMClick() { // clicks % 2 === 0 === number is even
-    dMFlag = !dMFlag;
-    darkMode(dMFlag);
-}
-
-function darkMode(flag) {
-    var nav = document.getElementById("searchSpringNav");
-    var navButton = document.getElementById("searchSpringNavButton");
-    var body = document.getElementById("body");
-    var container = document.getElementById("mainContainer");
-    var cards = document.getElementsByClassName("card-body");
-    var search = document.getElementById("search");
-    var submit = document.getElementById("icon");
-    var pagLis = document.getElementById("pagLi");
-    var pagLis2 = document.getElementById("pagLi2");
-    var toTop = document.getElementById("return-to-top");
-    var text = document.getElementsByClassName("text");
-
-    // ==========================first click/ to turn dark mode on
-    if (nav.classList.contains("searchSpringNav") && navButton.classList.contains("searchSpringNav")) {
-
-        for (let i = 0; i < cards.length; i++) {
-            cards[i].classList.add("dmCardColor");
-        }
-        for (let i = 0; i < text.length; i++) {
-            text[i].classList.add("dmText");
-        }
-
-        toTop.classList.add("return-to-topDM");
-        toTop.classList.remove("return-to-top");
-        submit.classList.add("dmIcon");
-        submit.classList.remove("icon");
-        body.classList.add("dmBodyColor");
-        container.classList.add("dmBodyColor");
-        nav.classList.remove("searchSpringNav")
-        nav.classList.add("dMBackgroundColor");
-        navButton.classList.remove("searchSpringNav")
-        navButton.classList.add("dMBackgroundColor");
-        search.classList.add("dmSearch");
-        pagLis.classList.add("test");
-        pagLis2.classList.add("test");
-
-        // ==========================second click/ to turn dark mode off
-    } else {
-
-        for (let i = 0; i < cards.length; i++) {
-            cards[i].classList.remove("dmCardColor");
-        }
-        for (let i = 0; i < text.length; i++) {
-            text[i].classList.remove("dmText");
-        }
-        pagLis.classList.remove("test");
-        pagLis2.classList.remove("test");
-        toTop.classList.remove("return-to-topDM");
-        submit.classList.add("icon");
-        submit.classList.remove("dmIcon");
-        container.classList.remove("dmBodyColor");
-        body.classList.remove("dmBodyColor");
-        nav.classList.remove("dMBackgroundColor");
-        nav.classList.add("searchSpringNav");
-        navButton.classList.remove("dMBackgroundColor");
-        navButton.classList.add("searchSpringNav");
-        search.classList.remove("dmSearch");
-
-
-    }
-    dMURL(flag);
-}
-
-function dMURL(flag) {
-
-    if (flag === true) {
-        for (let i = 0; i < 1; i++) {
-            window.history.pushState({path: newUrl}, '', newUrl);
-            break;
-        }
-    } else if (flag === false) {
-        window.history.pushState({path: protocol + host + path + query + (query ? '&' : '?')}, '');
-    }
-
-}
-
-$("#darkMode").on("click", dMClick);
-
-
-
+//
+// function dMClick() { // clicks % 2 === 0 === number is even
+//     dMFlag = !dMFlag;
+//     darkMode(dMFlag);
+// }
+//
+// function darkMode(flag) {
+//     var nav = document.getElementById("searchSpringNav");
+//     var navButton = document.getElementById("searchSpringNavButton");
+//     var body = document.getElementById("body");
+//     var container = document.getElementById("mainContainer");
+//     var cards = document.getElementsByClassName("card-body");
+//     var search = document.getElementById("search");
+//     var submit = document.getElementById("icon");
+//     var pagLis = document.getElementById("pagLi");
+//     var pagLis2 = document.getElementById("pagLi2");
+//     var toTop = document.getElementById("return-to-top");
+//     var text = document.getElementsByClassName("text");
+//
+//     // ==========================first click/ to turn dark mode on
+//     if (nav.classList.contains("searchSpringNav") && navButton.classList.contains("searchSpringNav")) {
+//
+//         for (let i = 0; i < cards.length; i++) {
+//             cards[i].classList.add("dmCardColor");
+//         }
+//         for (let i = 0; i < text.length; i++) {
+//             text[i].classList.add("dmText");
+//         }
+//
+//         toTop.classList.add("return-to-topDM");
+//         toTop.classList.remove("return-to-top");
+//         submit.classList.add("dmIcon");
+//         submit.classList.remove("icon");
+//         body.classList.add("dmBodyColor");
+//         container.classList.add("dmBodyColor");
+//         nav.classList.remove("searchSpringNav")
+//         nav.classList.add("dMBackgroundColor");
+//         navButton.classList.remove("searchSpringNav")
+//         navButton.classList.add("dMBackgroundColor");
+//         search.classList.add("dmSearch");
+//         pagLis.classList.add("test");
+//         pagLis2.classList.add("test");
+//
+//         // ==========================second click/ to turn dark mode off
+//     } else {
+//
+//         for (let i = 0; i < cards.length; i++) {
+//             cards[i].classList.remove("dmCardColor");
+//         }
+//         for (let i = 0; i < text.length; i++) {
+//             text[i].classList.remove("dmText");
+//         }
+//         pagLis.classList.remove("test");
+//         pagLis2.classList.remove("test");
+//         toTop.classList.remove("return-to-topDM");
+//         submit.classList.add("icon");
+//         submit.classList.remove("dmIcon");
+//         container.classList.remove("dmBodyColor");
+//         body.classList.remove("dmBodyColor");
+//         nav.classList.remove("dMBackgroundColor");
+//         nav.classList.add("searchSpringNav");
+//         navButton.classList.remove("dMBackgroundColor");
+//         navButton.classList.add("searchSpringNav");
+//         search.classList.remove("dmSearch");
+//
+//
+//     }
+//     dMURL(flag);
+// }
+//
+// function dMURL(flag) {
+//
+//     if (flag === true) {
+//         for (let i = 0; i < 1; i++) {
+//             window.history.pushState({path: newUrl}, '', newUrl);
+//             break;
+//         }
+//     } else if (flag === false) {
+//         window.history.pushState({path: protocol + host + path + query + (query ? '&' : '?')}, '');
+//     }
+//
+// }
+//
+// $("#darkMode").on("click", dMClick);
+//
+//
+//
 
