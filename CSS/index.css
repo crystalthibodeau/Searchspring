@@ -1,3 +1,64 @@
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+ul li {
+    display: block;
+    position: relative;
+    float: left;
+}
+/* This hides the dropdowns */
+li ul {
+    display: none;
+}
+ul li a {
+    display: block;
+    padding: 1em;
+    text-decoration: none;
+    white-space: nowrap;
+    color: black;
+}
+ul li a:hover {
+    background: #2c3e50;
+}
+/* Display the dropdown */
+li:hover > ul {
+    display: block;
+    position: absolute;
+}
+/* Remove float from dropdown lists */
+li:hover li {
+    float: none;
+}
+li:hover a {
+    background: #1bc2a2;
+}
+li:hover li a:hover {
+    background: #2c3e50;
+}
+.main-navigation li ul li {
+    border-top: 0;
+}
+/* Displays second level dropdowns to the right of the first level dropdown */
+ul ul ul {
+    left: 100%;
+    top: 0;
+}
+
+
+/* Simple clearfix */
+
+ul:before,
+ul:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+ul:after {
+    clear: both;
+}
+
 .cardBody {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
@@ -24,6 +85,23 @@
     vertical-align: middle;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+
+
+
+/*.searchSpring{*/
+/*    background: none !important;*/
+/*    border: none;*/
+/*    padding: 0 !important;*/
+/*    text-decoration: none;*/
+/*    transition: transform .2s ease-in-out;*/
+/*    color: lightgrey;*/
+/*    font-size: xx-large;*/
+/*}*/
+
+/*.searchSpring:hover{*/
+/*    color: #00CEE1;*/
+/*    transform: scale(1.05);*/
+/*}*/
 /*=======================================Dark Mode Classes*/
 
 .dark #search{
@@ -295,7 +373,7 @@ input:checked + .slider:before {
     border: none;
 }
 
-#navHeader {
+#navHeader, .searchSpring {
     background: none !important;
     border: none;
     padding: 0 !important;
@@ -305,7 +383,7 @@ input:checked + .slider:before {
     font-size: xx-large;
 }
 
-#navHeader:hover {
+#navHeader:hover, .searchSpring:hover{
     color: #00CEE1;
     transform: scale(1.05);
 }
