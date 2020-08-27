@@ -200,16 +200,15 @@ function modal(results) { //data.results
             '<div class=\"modal fade\" id=\"recipeApiModalLong' +i+'\" tabindex=\"-1\" role=\"dialog\"\n' +
             " aria-labelledby=\"recipeModalLongTitle\" aria-hidden=\"true\">\n" +
             "\n" + "<div class=\"modal-dialog modal-lg\" role=\"document\">\n" +
-            "<div class=\"modal-content\">\n" +
-            "<div class=\"modal-header\">\n" +
-            "<h5 class=\"api-modal-title profileFromRecipeAnchorTags\" id=\"recipeApiModalLongTitle\">Modal\n" +
-            "title</h5>\n" +
-            "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n" +
+            "<div class=\"modalContent\">\n" +
+            "<div class=\"modalHeader\">\n" +
+            "<h5 class=\"textColor api-modal-title profileFromRecipeAnchorTags\" id=\"recipeApiModalLongTitle\">" + results[i].title +"</h5>\n" +
+            "<button type=\"button\" class=\"closed\" data-dismiss=\"modal\" aria-label=\"Close\">\n" +
             "<span aria-hidden=\"true\">&times;</span>\n" +
             "</button>\n" +
             "</div>\n" +
             "<div class=\"api-modal-image mx-auto\">\n" +
-            '<img class="card-img-top img-fluid" src="' + results[i].thumbnailImageUrl + '" alt="Card image" />' +
+            '<img class="card-img-top img-fluid pt-4" src="' + results[i].thumbnailImageUrl + '" alt="Card image" />' +
             "\n" +
             "</div>\n" +
             "<div class=\"modal-body text-center\">\n" +
@@ -218,9 +217,9 @@ function modal(results) { //data.results
             msrp +
             '</div>' +
             '<h3 class="textColor text-center">' + results[i].title + '</h3>' +
-            "<p>" + results[i].description + "</p>\n" +
+            '<p class="textColor">' + results[i].description + "</p>\n" +
             "</div>\n" +
-            "<div class=\"modal-footer\">\n" +
+            "<div class=\"modalFooter\">\n" +
             "<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n" +
             "</div>\n" +
             "</div>\n" +
