@@ -13,7 +13,7 @@ var protocol = window.location.protocol,
     path = window.location.pathname,
     query = window.location.search;
 
-if(searchParam === null){
+if (searchParam === null) {
     searchParam = "";
 }
 
@@ -39,10 +39,11 @@ function darkLight() {
         localStorage.toggled = "";
     }
 }
+
 if ($('main').hasClass('dark')) {
-    $( '#checkBox' ).prop( "checked", true )
+    $('#checkBox').prop("checked", true)
 } else {
-    $( '#checkBox' ).prop( "checked", false )
+    $('#checkBox').prop("checked", false)
 }
 
 function onLoad() {
@@ -58,6 +59,7 @@ function onLoad() {
     });
 
 }
+
 onLoad();
 
 searchButton.addEventListener("click", onLoad);
@@ -124,6 +126,7 @@ function previous() {
     })
 
 }
+
 // =================================Checks media query for nav view in mobile===========================================
 
 function mediaQuery() {
@@ -135,12 +138,14 @@ function mediaQuery() {
 }
 
 mediaQuery();
+
 // ====================================sets pagination number to 1 on load==========================================
 function paginationUpdate() {
     for (let i = 0; i < paginationNumbers.length; i++) {
         document.getElementsByClassName("paginationNumber")[i].innerHTML = paginationNumber;
     }
 }
+
 paginationUpdate();
 
 // =============================================Disable Pagination==================================================
@@ -172,6 +177,58 @@ function Disable(pagNumber, set) {
 }
 
 // ===============================================Creates Cards==========================================================
+function modal(results) { //data.results
+
+
+    for (let i = 0; i < results.length; i++) {
+        console.log(results[i])
+        var msrp = "";
+        // product has an “msrp” field
+        if (results[i].msrp != null || results[i].msrp !== undefined || results[i].msrp !== "") {
+
+            var msrpNum = parseFloat(results[i].msrp);
+            var priceNum = parseFloat(results[i].price);
+            //console.log("msrp", msrpNum + " vs " + priceNum)
+
+            if (msrpNum > priceNum) {
+                msrp = '<h4 class="px-1 strike text-muted">' + "$" + results[i].msrp + '</h4>';
+            }
+
+        }
+        var modal =
+            "<div class=\"modal fade\" id=\"recipeApiModalLong\" tabindex=\"-1\" role=\"dialog\"\n" +
+            " aria-labelledby=\"recipeModalLongTitle\" aria-hidden=\"true\">\n" +
+            "\n" + "<div class=\"modal-dialog modal-lg\" role=\"document\">\n" +
+            "<div class=\"modal-content\">\n" +
+            "<div class=\"modal-header\">\n" +
+            "<h5 class=\"api-modal-title profileFromRecipeAnchorTags\" id=\"recipeApiModalLongTitle\">Modal\n" +
+            "title</h5>\n" +
+            "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n" +
+            "<span aria-hidden=\"true\">&times;</span>\n" +
+            "</button>\n" +
+            "</div>\n" +
+            "<div class=\"api-modal-image mx-auto\">\n" +
+            '<img class="card-img-top img-fluid" src="' + results[i].thumbnailImageUrl + '" alt="Card image" />' +
+            "\n" +
+            "</div>\n" +
+            "<div class=\"modal-body text-center\">\n" +
+            '<div class="d-flex justify-content-center">' +
+            '<h4 class="textColor px-1">' + "$" + results[i].price + '</h4>' +
+            msrp +
+            '</div>' +
+            '<h3 class="textColor text-center">' + results[i].title + '</h3>' +
+            "<p>" + results[i].description + "</p>\n" +
+            "</div>\n" +
+            "<div class=\"modal-footer\">\n" +
+            "<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n" +
+            "</div>\n" +
+            "</div>\n" +
+            "</div>\n" +
+            "</div>";
+    }
+    $(".modals").html(modal);
+
+}
 
 function createCards(results, card) { //data.results
 
@@ -201,10 +258,14 @@ function createCards(results, card) { //data.results
         card += '<h4 class="textColor px-1">' + "$" + results[i].price + '</h4>'
         card += msrp;
         card += '</div>';
+        card += '<small class="text-muted d-flex justify-content-center align-items-center">';
+        card += '<button class="btn" data-toggle="modal" data-target="#recipeApiModalLong" id="' + results[i] + '\">\n' + '  Product Preview\n' + '</button>';
+        card += '</small>';
         card += '</div>';
         card += '</div>';
         card += '</div>';
     }
+    modal(results);
 
     $(".ShoppingCards").html(card);
 }
@@ -223,9 +284,9 @@ for (let i = 0; i < bothNext.length; i++) {
 $(window).scroll(function (e) {
     e.preventDefault();
     console.log($(window).width());
-    if($(window).width() < 652){
+    if ($(window).width() < 652) {
         $("#return-to-top").hide();
-    }else{
+    } else {
         if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
             $('#return-to-top').fadeIn(200);    // Fade in the arrow
         } else {
