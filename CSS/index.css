@@ -1,62 +1,52 @@
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-ul li {
-    display: block;
-    position: relative;
-    float: left;
-}
-/* This hides the dropdowns */
-li ul {
-    display: none;
-}
-ul li a {
-    display: block;
-    padding: 1em;
-    text-decoration: none;
-    white-space: nowrap;
-    color: black;
-}
-ul li a:hover {
-    background: #2c3e50;
-}
-/* Display the dropdown */
-li:hover > ul {
-    display: block;
-    position: absolute;
-}
-/* Remove float from dropdown lists */
-li:hover li {
-    float: none;
-}
-li:hover a {
-    background: #1bc2a2;
-}
-li:hover li a:hover {
-    background: #2c3e50;
-}
-.main-navigation li ul li {
-    border-top: 0;
-}
-/* Displays second level dropdowns to the right of the first level dropdown */
-ul ul ul {
-    left: 100%;
-    top: 0;
+
+#primary_nav_wrap ul
+{
+    list-style:none;
+    position:relative;
+    float:left;
+    margin:0;
 }
 
-
-/* Simple clearfix */
-
-ul:before,
-ul:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+#primary_nav_wrap ul a
+{
+    display:block;
+    padding: 8px;
 }
 
-ul:after {
-    clear: both;
+#primary_nav_wrap ul li
+{
+    position:relative;
+    float:right;
+    margin:0;
+}
+
+#primary_nav_wrap ul li:hover {
+    /*background:#4D39B5;*/
+}
+
+#primary_nav_wrap ul ul {
+    color: white;
+    display:none;
+    position:absolute;
+    top:100%;
+    right:0;
+    background:#3A23AD;
+    padding:0
+}
+
+#primary_nav_wrap ul ul li {
+    float:none;
+    width:150px
+}
+
+#primary_nav_wrap ul ul ul
+{
+    top:0;
+    right:100%
+}
+
+#primary_nav_wrap ul li:hover > ul {
+    display:block
 }
 
 .cardBody {
@@ -86,7 +76,15 @@ ul:after {
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
-
+.dark #primary_nav_wrap ul ul {
+    color: white;
+    display:none;
+    position:absolute;
+    top:100%;
+    right:0;
+    background:#333435;
+    padding:0
+}
 
 /*.searchSpring{*/
 /*    background: none !important;*/
@@ -247,7 +245,7 @@ ul:after {
 }
 
 input:checked + .slider {
-    background-color: #2196f3;
+    background-color: gray;
 }
 
 input:checked + .slider:before {

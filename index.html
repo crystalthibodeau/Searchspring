@@ -42,19 +42,25 @@
 
         </div>
     </form>
-    <div class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-           aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-cog"></i>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <p> Dark Mode </p>
-            <label class="switch">
-                <input type="checkbox" onclick="darkLight()" id="checkBox">
-                <span class="slider"></span>
-            </label>
-        </div>
-    </div>
+    <nav id="primary_nav_wrap">
+        <ul>
+            <li>
+                <a href="#" class="m-3">
+                    <i class="fas fa-cog fa-2x"></i>
+                </a>
+
+                <ul>
+                    <li class="d-flex justify-content-around p-2">
+                        <p class="align-self-center"> Dark Mode </p>
+                        <label class="switch">
+                            <input type="checkbox" onclick="darkLight()" id="checkBox">
+                            <span class="slider "></span>
+                        </label>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
 
 </nav>
 <a href="" id="return-to-top" class="return-to-top"><i class="icon-chevron-up fa-lg"></i></a>

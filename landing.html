@@ -24,73 +24,31 @@
 </head>
 
 <body id="main" class="body">
-<nav class="navbar w-100 fixed-top d-flex" id="LandingNav">
+<nav class="navbar w-100 fixed-top d-flex m-0 p-0" id="LandingNav">
 
-
-    <ul class="main-navigation">
-        <li>
-            <a href="#">
-                <i class="fas fa-cog"></i>
-            </a>
-
-            <ul>
-                <li>
-                    <a href="#" class="background">
-                        <p> Dark Mode </p>
-<!--                        <label class="switch">-->
-<!--                            <input type="checkbox" onclick="darkLight()" id="checkBox">-->
-<!--                            <span class="slider "></span>-->
-<!--                        </label>-->
-                    </a>
-                </li>
-            </ul>
-        </li>
-    </ul>
-
-
-
-<!--        <li class="d-flex justify-content-end">-->
-<!--            <input type="radio" name="menuopt" id="drop2" />-->
-<!--            <label class="opener" for="drop2">-->
-<!--                <i class="fas fa-cog"></i>-->
-<!--            </label>-->
-<!--            <label class="closer" for="dropclose">-->
-<!--                <i class="fas fa-cog"></i>-->
-<!--            </label>-->
-
-<!--            <ul>-->
-<!--                <li class="d-flex justify-content-end">-->
-<!--                    <a href="">-->
-<!--                        <p> Dark Mode </p>-->
-<!--                        <label class="switch">-->
-<!--                            <input type="checkbox" onclick="darkLight()" id="checkBox">-->
-<!--                            <span class="slider "></span>-->
-<!--                        </label>-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--            <input type="radio" name="menuopt" id="dropclose" />-->
-<!--        </li>-->
-
-<!--        <ul class="menu">-->
-<!--            <li>-->
-<!--                <input type="radio" name="menuopt" id="drop1" />-->
-<!--                <label class="opener" for="drop1">-->
-<!--                    <i class="fas fa-cog"></i>-->
-<!--                </label>-->
-<!--                <label class="closer" for="dropclose">-->
-<!--                    <i class="fas fa-cog"></i>-->
-<!--                </label>-->
-<!--                -->
-<!--            </li>-->
-<!--        </ul>-->
-
-
-<!--    </div>-->
-    <a href="landing.html" class="searchSpring navbar-brand d-lg-block text-monospace align-self-sm-center">Searchspring</a>
+    <a href="landing.html" class="searchSpring navbar-brand d-lg-block text-monospace align-self-sm-center m-3">Searchspring</a>
     <div id="navbarNav">
-        <a id="navHeader" href="index.html" class="navbar-brand d-lg-block text-monospace align-self-sm-center">Catalog</a>
+        <a id="navHeader" href="index.html" class="p-3 navbar-brand d-lg-block text-monospace align-self-sm-center">Catalog</a>
     </div>
+    <nav id="primary_nav_wrap">
+        <ul>
+            <li>
+                <a href="#" class="m-3">
+                    <i class="fas fa-cog fa-2x"></i>
+                </a>
+
+                <ul>
+                    <li class="d-flex justify-content-around p-2">
+                        <p class="align-self-center"> Dark Mode </p>
+                        <label class="switch">
+                            <input type="checkbox" onclick="darkLight()" id="checkBox">
+                            <span class="slider "></span>
+                        </label>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
 </nav>
 <div class="jumbotron jumbotron-fluid m-0 p-0 d-flex align-items-center justify-content-center">
     <div class="container">
