@@ -17,52 +17,56 @@
 </head>
 
 <body id="main" class="body">
+<nav class="navbar navbar-expand-xl sticky-top" id="searchSpringNav">
 
-<nav class="navbar w-100 m-0 p-0 sticky-top d-flex justify-content-center justify-content-xl-between
-" id="searchSpringNav">
+    <button class="navbar-toggler pt-3 w-100 text-left" type="button" data-toggle="collapse" data-target="#navBar"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="custom-toggler navbar-toggler-icon"><i class="fas fa-bars fa-lg"></i></span>
+    </button>
 
-    <a href="landing.html"
-       class="searchSpring navbar-brand d-lg-block text-monospace align-self-sm-center">Searchspring</a>
+    <a href="landing.html" class="searchSpring d-lg-block text-monospace mr-3">Searchspring</a>
     <div id="navbarNav">
-        <a id="navHeader" href="index.html"
-           class="navbar-brand d-lg-block text-monospace align-self-sm-center m-1">Catalog</a>
+        <a id="navHeader" href="index.html" class="d-lg-block text-monospace">Catalog</a>
     </div>
-    <!--    <div id="navbarNav">-->
-    <!--        <button id="navHeader" type="submit" class="navbar-brand d-lg-block text-monospace align-self-sm-center">-->
-    <!--            Searchspring-->
-    <!--        </button>-->
-    <!--    </div>-->
-    <form action="#" method="get" class="form-inline" id="demoForm">
-        <input class="form-control" type="text" placeholder="Search.." id="search"
-               name="search" aria-label="Search"/>
-        <div class="d-flex justify-content-center justify-content-xl-between">
-            <button id="searchSpringNavButton" type="submit" class="button p-2 d-flex justify-content-center"><i
-                    class="fas align-self-sm-center fa-search icon p-0 m-0" id="icon"></i>
-            </button>
+    <div class="collapse navbar-collapse" id="navBar">
+        <ul class="navbar-nav ml-auto text-left pr-2">
+            <li class="nav-item">
+                <form action="#" method="get" class="formInline float" id="demoForm">
+                    <input class="m-2" type="text" placeholder="Search.." id="search"
+                           name="search" aria-label="Search"/>
+                    <div class="">
+                        <button id="searchSpringNavButton" type="submit" class="button p-2"><i
+                                class="fas fa-search icon p-0 m-0 fa-lg" id="icon"></i>
+                        </button>
 
-        </div>
-    </form>
-    <nav id="primary_nav_wrap">
-        <ul>
-            <li>
-                <a href="#" class="mx-3">
-                    <i class="fas fa-cog fa-2x"></i>
-                </a>
+                    </div>
+                </form>
+            </li>
+            <li class="nav-item">
+                <nav id="primary_nav_wrap">
+                    <ul class="float">
+                        <li>
+                            <a href="#" class="p-2">
+                                <i class="fas fa-cog fa-lg"></i>
+                            </a>
 
-                <ul>
-                    <li class="d-flex justify-content-around mx-3">
-                        <p class="align-self-center"> Dark Mode </p>
-                        <label class="switch">
-                            <input type="checkbox" onclick="darkLight()" id="checkBox">
-                            <span class="slider "></span>
-                        </label>
-                    </li>
-                </ul>
+                            <ul>
+                                <li class="d-flex justify-content-around p-2">
+                                    <p class="align-self-center"> Dark Mode </p>
+                                    <label class="switch">
+                                        <input type="checkbox" onclick="darkLight()" id="checkBox">
+                                        <span class="slider "></span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
             </li>
         </ul>
-    </nav>
-
+    </div>
 </nav>
+
 <a href="" id="return-to-top" class="return-to-top"><i class="icon-chevron-up fa-lg"></i></a>
 
 <!--====================================End Of NavBar StART OF First Pagination======================================-->
@@ -94,30 +98,6 @@
 
     </div>
 
-<!--    <div class="modal fade" id="recipeApiModalLong" tabindex="-1" role="dialog"-->
-<!--         aria-labelledby="recipeModalLongTitle" aria-hidden="true">-->
-
-<!--        <div class="modal-dialog modal-lg" role="document">-->
-<!--            <div class="modal-content">-->
-<!--                <div class="modal-header">-->
-<!--                    <h5 class="api-modal-title profileFromRecipeAnchorTags" id="recipeApiModalLongTitle">Modal-->
-<!--                        title</h5>-->
-<!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--                        <span aria-hidden="true">&times;</span>-->
-<!--                    </button>-->
-<!--                </div>-->
-<!--                <div class="api-modal-image mx-auto">-->
-
-<!--                </div>-->
-<!--                <div class="modal-body">-->
-<!--                   <p>test test test</p>-->
-<!--                </div>-->
-<!--                <div class="modal-footer">-->
-<!--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
 
     <!--==========================================START OF Last Pagination=============================================-->
 

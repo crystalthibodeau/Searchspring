@@ -18,46 +18,65 @@
         .display-1 {
             font-family: "Bradley Hand";
             font-weight: bolder;
-            color:white;
+            color: white;
         }
     </style>
 </head>
 
 <body id="main" class="body">
-<nav class="navbar w-100 fixed-top d-flex m-0 p-0" id="LandingNav">
+<!--<nav class="navbar w-100 fixed-top d-flex m-0 p-0" id="LandingNav">-->
 
-    <a href="landing.html" class="searchSpring navbar-brand d-lg-block text-monospace align-self-sm-center mx-3">Searchspring</a>
+<!--    <a href="landing.html" class="searchSpring navbar-brand d-lg-block text-monospace align-self-sm-center mx-3">Searchspring</a>-->
 
+<!--    <div id="navbarNav">-->
+<!--        <a id="navHeader" href="index.html" class="p-3 navbar-brand d-lg-block text-monospace align-self-sm-center m-1">Catalog</a>-->
+<!--    </div>-->
+
+
+<!--</nav>-->
+
+
+<nav class="navbar navbar-expand-xl sticky-top" id="LandingNav">
+    <button class="navbar-toggler pt-3 w-100 text-left" type="button" data-toggle="collapse" data-target="#navBar"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="custom-toggler navbar-toggler-icon"><i class="fas fa-bars fa-lg"></i></span>
+    </button>
+
+    <a href="landing.html" class="searchSpring d-lg-block text-monospace mr-3">Searchspring</a>
     <div id="navbarNav">
-        <a id="navHeader" href="index.html" class="p-3 navbar-brand d-lg-block text-monospace align-self-sm-center m-1">Catalog</a>
+        <a id="navHeader" href="index.html" class="d-lg-block text-monospace">Catalog</a>
     </div>
+    <div class="collapse navbar-collapse" id="navBar">
+        <ul class="navbar-nav ml-auto text-left pr-2">
+            <li class="nav-item">
+                <nav id="primary_nav_wrap">
+                    <ul class="float">
+                        <li>
+                            <a href="#" class="">
+                                <i class="fas fa-cog fa-lg"></i>
+                            </a>
 
-    <nav id="primary_nav_wrap">
-        <ul>
-            <li>
-                <a href="#" class="mx-3">
-                    <i class="fas fa-cog fa-2x"></i>
-                </a>
-
-                <ul>
-                    <li class="d-flex justify-content-around p-2">
-                        <p class="align-self-center"> Dark Mode </p>
-                        <label class="switch">
-                            <input type="checkbox" onclick="darkLight()" id="checkBox">
-                            <span class="slider "></span>
-                        </label>
-                    </li>
-                </ul>
+                            <ul>
+                                <li class="d-flex justify-content-around p-2">
+                                    <p class="align-self-center"> Dark Mode </p>
+                                    <label class="switch">
+                                        <input type="checkbox" onclick="darkLight()" id="checkBox">
+                                        <span class="slider "></span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
             </li>
         </ul>
-    </nav>
+    </div>
 </nav>
 <div class="jumbotron jumbotron-fluid m-0 p-0 d-flex align-items-center justify-content-center">
     <div class="container">
         <h1 class="text-right display-1">Shop your way!</h1>
     </div>
 </div>
-
 
 <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"

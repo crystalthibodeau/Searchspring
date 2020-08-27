@@ -220,7 +220,6 @@
 #navHeader, .searchSpring {
     background: none !important;
     border: none;
-    padding: 0 !important;
     text-decoration: none;
     transition: transform .2s ease-in-out;
     color: lightgrey;
@@ -228,6 +227,7 @@
 }
 
 #navHeader:hover, .searchSpring:hover{
+    text-decoration: none;
     color: #00CEE1;
     transform: scale(1.05);
 }
@@ -391,8 +391,9 @@ input:checked + .slider:before {
     color: #86898B; !important;
 }
 .dark .productCard{
-    border: 2px solid black;
+    border: 1px solid black;
 }
+
 .dark .cardBody {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
@@ -455,11 +456,21 @@ input:checked + .slider:before {
     background-color: #333435;
 }
 /*================================================ dropdown dm =======================================================*/
+
+.formInline {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    justify-content: center;
+}
 #primary_nav_wrap ul
 {
     list-style:none;
     position:relative;
-    float:left;
+    /*float:left;*/
     margin:0;
 }
 
@@ -476,9 +487,9 @@ input:checked + .slider:before {
     margin:0;
 }
 
-#primary_nav_wrap ul li:hover {
-    /*background:#4D39B5;*/
-}
+/*#primary_nav_wrap ul li:hover {*/
+/*    !*background:#4D39B5;*!*/
+/*}*/
 
 #primary_nav_wrap ul ul {
     color: white;
@@ -503,4 +514,11 @@ input:checked + .slider:before {
 
 #primary_nav_wrap ul li:hover > ul {
     display:block
+}
+
+@media screen and (max-width:648px) {
+
+    .float{
+        float: right;
+    }
 }

@@ -1,7 +1,4 @@
 // ==========================Submits ajax request for catolog items without search param==============================
-// if (searchParam != null) {
-//     searchString = searchParam.replace(/,|,\s/g, ",+");
-// }
 
 var searchString;
 searchString = '';
@@ -197,12 +194,12 @@ function modal(results) { //data.results
 
         }
         modal +=
-            '<div class=\"modal fade\" id=\"recipeApiModalLong' +i+'\" tabindex=\"-1\" role=\"dialog\"\n' +
-            " aria-labelledby=\"recipeModalLongTitle\" aria-hidden=\"true\">\n" +
+            '<div class=\"modal fade\" id=\"ApiModalLong' +i+'\" tabindex=\"-1\" role=\"dialog\"\n' +
+            " aria-labelledby=\"ModalLongTitle\" aria-hidden=\"true\">\n" +
             "\n" + "<div class=\"modal-dialog modal-lg\" role=\"document\">\n" +
             "<div class=\"modalContent\">\n" +
             "<div class=\"modalHeader\">\n" +
-            "<h5 class=\"textColor api-modal-title profileFromRecipeAnchorTags\" id=\"recipeApiModalLongTitle\">" + results[i].title +"</h5>\n" +
+            "<h5 class=\"textColor api-modal-title\" id=\"ApiModalLongTitle\">" + results[i].title +"</h5>\n" +
             "<button type=\"button\" class=\"closed\" data-dismiss=\"modal\" aria-label=\"Close\">\n" +
             "<span aria-hidden=\"true\">&times;</span>\n" +
             "</button>\n" +
@@ -259,7 +256,7 @@ function createCards(results, card) { //data.results
         card += msrp;
         card += '</div>';
         card += '<small class="text-muted d-flex justify-content-center align-items-center">';
-        card += '<button class="preview px-3" data-toggle="modal" data-target="#recipeApiModalLong'+i+'" id="' + results[i] + '\">\n' + 'Preview\n' + '</button>';
+        card += '<button class="preview px-3" data-toggle="modal" data-target="#ApiModalLong'+i+'" id="' + results[i] + '\">\n' + 'Preview\n' + '</button>';
         card += '</small>';
         card += '</div>';
         card += '</div>';
