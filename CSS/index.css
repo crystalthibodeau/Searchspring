@@ -56,6 +56,8 @@
     padding: 1.25rem;
     background-color: white;
 }
+
+
 .productCard {
     position: relative;
     display: -ms-flexbox;
@@ -67,7 +69,15 @@
     background-color: #fff;
     background-clip: border-box;
     border-radius: .25rem;
+    transition: transform .4s;
+    border: none;
 }
+
+.productCard:hover {
+    transform: scale(1.03);
+    border: none;
+}
+
 #searchSpringNavButton{
     background-color: transparent;
     border: none;
@@ -86,20 +96,6 @@
     padding:0
 }
 
-/*.searchSpring{*/
-/*    background: none !important;*/
-/*    border: none;*/
-/*    padding: 0 !important;*/
-/*    text-decoration: none;*/
-/*    transition: transform .2s ease-in-out;*/
-/*    color: lightgrey;*/
-/*    font-size: xx-large;*/
-/*}*/
-
-/*.searchSpring:hover{*/
-/*    color: #00CEE1;*/
-/*    transform: scale(1.05);*/
-/*}*/
 /*=======================================Dark Mode Classes*/
 
 .dark #search{
@@ -359,16 +355,6 @@ input:checked + .slider:before {
 .right-radius {
     border-bottom-right-radius: 35px;
     -webkit-border-top-right-radius: 35px;
-}
-
-.card {
-    transition: transform .2s;
-    border: none;
-}
-
-.card:hover {
-    transform: scale(1.03);
-    border: none;
 }
 
 #navHeader, .searchSpring {
