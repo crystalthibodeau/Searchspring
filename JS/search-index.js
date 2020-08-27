@@ -179,11 +179,12 @@ function Disable(pagNumber, set) {
 // ===============================================Creates Cards==========================================================
 function modal(results) { //data.results
 
-
+    var modal = "";
     for (let i = 0; i < results.length; i++) {
-        console.log(results[i])
+        // console.log(results[i])
         var msrp = "";
-        // product has an “msrp” field
+        //var modal = "";
+            // product has an “msrp” field
         if (results[i].msrp != null || results[i].msrp !== undefined || results[i].msrp !== "") {
 
             var msrpNum = parseFloat(results[i].msrp);
@@ -195,8 +196,8 @@ function modal(results) { //data.results
             }
 
         }
-        var modal =
-            "<div class=\"modal fade\" id=\"recipeApiModalLong\" tabindex=\"-1\" role=\"dialog\"\n" +
+        modal +=
+            '<div class=\"modal fade\" id=\"recipeApiModalLong' +i+'\" tabindex=\"-1\" role=\"dialog\"\n' +
             " aria-labelledby=\"recipeModalLongTitle\" aria-hidden=\"true\">\n" +
             "\n" + "<div class=\"modal-dialog modal-lg\" role=\"document\">\n" +
             "<div class=\"modal-content\">\n" +
@@ -225,9 +226,9 @@ function modal(results) { //data.results
             "</div>\n" +
             "</div>\n" +
             "</div>";
+
     }
     $(".modals").html(modal);
-
 }
 
 function createCards(results, card) { //data.results
@@ -259,7 +260,7 @@ function createCards(results, card) { //data.results
         card += msrp;
         card += '</div>';
         card += '<small class="text-muted d-flex justify-content-center align-items-center">';
-        card += '<button class="btn" data-toggle="modal" data-target="#recipeApiModalLong" id="' + results[i] + '\">\n' + '  Product Preview\n' + '</button>';
+        card += '<button class="btn" data-toggle="modal" data-target="#recipeApiModalLong'+i+'" id="' + results[i] + '\">\n' + '  Product Preview\n' + '</button>';
         card += '</small>';
         card += '</div>';
         card += '</div>';
@@ -283,7 +284,6 @@ for (let i = 0; i < bothNext.length; i++) {
 //======================########################===== Scroll to Top ====########################========================
 $(window).scroll(function (e) {
     e.preventDefault();
-    console.log($(window).width());
     if ($(window).width() < 652) {
         $("#return-to-top").hide();
     } else {
