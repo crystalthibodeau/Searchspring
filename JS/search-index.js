@@ -260,7 +260,7 @@ function createCards(results, card) { //data.results
         card += msrp;
         card += '</div>';
         card += '<small class="text-muted d-flex justify-content-center align-items-center">';
-        card += '<button class="btn" data-toggle="modal" data-target="#recipeApiModalLong'+i+'" id="' + results[i] + '\">\n' + '  Product Preview\n' + '</button>';
+        card += '<button class="preview px-3" data-toggle="modal" data-target="#recipeApiModalLong'+i+'" id="' + results[i] + '\">\n' + 'Preview\n' + '</button>';
         card += '</small>';
         card += '</div>';
         card += '</div>';

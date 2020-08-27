@@ -1,52 +1,18 @@
-
-#primary_nav_wrap ul
-{
-    list-style:none;
-    position:relative;
-    float:left;
-    margin:0;
+/*================================================ light styling =====================================================*/
+.preview{
+    background-color:#F0F0F0;
+    color: #3A23AD;
+    font-size: medium;
+    border: none;
+    border-radius: 35px;
+    text-transform: uppercase;
+    font-family: Chalkboard;
+    transition: transform .4s;
 }
-
-#primary_nav_wrap ul a
-{
-    display:block;
-    padding: 8px;
-}
-
-#primary_nav_wrap ul li
-{
-    position:relative;
-    float:right;
-    margin:0;
-}
-
-#primary_nav_wrap ul li:hover {
-    /*background:#4D39B5;*/
-}
-
-#primary_nav_wrap ul ul {
-    color: white;
-    display:none;
-    position:absolute;
-    top:100%;
-    right:0;
-    background:#3A23AD;
-    padding:0
-}
-
-#primary_nav_wrap ul ul li {
-    float:none;
-    width:150px
-}
-
-#primary_nav_wrap ul ul ul
-{
-    top:0;
-    right:100%
-}
-
-#primary_nav_wrap ul li:hover > ul {
-    display:block
+.preview:hover{
+    transform: scale(1.03);
+    color: #00CEE1;
+    box-shadow: 0 8px 6px -6px lightgray;
 }
 
 .cardBody {
@@ -86,24 +52,6 @@
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
-.dark #primary_nav_wrap ul ul {
-    color: white;
-    display:none;
-    position:absolute;
-    top:100%;
-    right:0;
-    background:#333435;
-    padding:0
-}
-
-/*=======================================Dark Mode Classes*/
-
-.dark #search{
-    background-color: #262628;
-    border: 1px solid black;
-}
-
-
 .fas:hover {
     transform: scale(1.16);
     color: #00CEE1;
@@ -114,152 +62,9 @@
     color: white;!important;
 }
 
-.dark .fas {
-    color: black;!important;
-
-}
-/*/not working/*/
-.dark .paginations a {
-    background-color: #393C3D;
-    border-color: #393C3D;
-    color: #666666;
-}
-
-.dark .paginations a:hover {
-    background-color: #666666;
-    border-color: #666666;
-    color: #393C3D;
-}
-
-.dark .textColor {
-    color: #86898B; !important;
-}
-
-.dark .cardBody {
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
-    min-height: 1px;
-    padding: 1.25rem;
-    background-color: #262628;!important;
-}
-
-
-/*/Working/*/
-.dark > .return-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #333435;
-    width: 50px;
-    height: 50px;
-    text-decoration: none;
-    -webkit-border-radius: 35px;
-    -moz-border-radius: 35px;
-    border-radius: 35px;
-    display: none;
-    -webkit-transition: all 0.3s linear;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
-
-.dark > .return-to-top i {
-    color: #666;
-    position: relative;
-    left: 16px;
-    top: 13px;
-    font-size: 19px;
-    font-weight: bolder;
-    -webkit-transition: all 0.8s ease;
-    -moz-transition: all 0.8s ease;
-    -o-transition: all 0.8s ease;
-    transition: all 0.8s ease;
-}
-
-.dark > .return-to-top:hover {
-    background: #666666;;
-}
-
-.dark > .return-to-top:hover i {
-    text-decoration: none;
-    color: #393C3D;
-    top: 5px;
-}
-
-.dark {
-    background-color: #1C1C1E;
-}
-
-.dark #searchSpringNav {
-    background-color: #333435;
-}
-/*LandingNav*/
-.dark #LandingNav {
-    background-color: #333435;
-}
 #LandingNav {
     background-color: #3A23AD;
 }
-/*======================End of Dark Mode Classes========================*/
-
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-    align-self: center;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
-}
-
-input:checked + .slider {
-    background-color: gray;
-}
-
-input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider {
-    border-radius: 30px;
-}
-
-.slider:before {
-    border-radius: 50%;
-}
-
-/*===================================*/
 .disabled {
     pointer-events: none;
     opacity: 0.5;
@@ -370,4 +175,224 @@ input:checked + .slider:before {
 #navHeader:hover, .searchSpring:hover{
     color: #00CEE1;
     transform: scale(1.05);
+}
+
+/*=================================================== dm slider ======================================================*/
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    align-self: center;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: gray;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+/* Rounded sliders */
+.slider {
+    border-radius: 30px;
+}
+
+.slider:before {
+    border-radius: 50%;
+}
+
+/*================================================ dm styling =======================================================*/
+
+.dark .preview{
+    background-color: #3C4042;
+    color: #7C7F81;
+    border: none;
+}
+.dark .preview:hover{
+    transform: scale(1.03);
+    color: lightgray;
+    box-shadow: 0 8px 6px -6px black;
+}
+
+.dark #primary_nav_wrap ul ul {
+    color: white;
+    display:none;
+    position:absolute;
+    top:100%;
+    right:0;
+    background:#333435;
+    padding:0
+}
+.dark #search{
+    background-color: #262628;
+    border: 1px solid black;
+}
+
+.dark .fas {
+    color: black;!important;
+
+}
+
+.dark .paginations a {
+    background-color: #393C3D;
+    border-color: #393C3D;
+    color: #666666;
+}
+
+.dark .paginations a:hover {
+    background-color: #666666;
+    border-color: #666666;
+    color: #393C3D;
+}
+
+.dark .textColor {
+    color: #86898B; !important;
+}
+.dark .productCard{
+    border: 2px solid black;
+}
+.dark .cardBody {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+    background-color: #262628;!important;
+}
+
+.dark > .return-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333435;
+    width: 50px;
+    height: 50px;
+    text-decoration: none;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    display: none;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.dark > .return-to-top i {
+    color: #666;
+    position: relative;
+    left: 16px;
+    top: 13px;
+    font-size: 19px;
+    font-weight: bolder;
+    -webkit-transition: all 0.8s ease;
+    -moz-transition: all 0.8s ease;
+    -o-transition: all 0.8s ease;
+    transition: all 0.8s ease;
+}
+
+.dark > .return-to-top:hover {
+    background: #666666;;
+}
+
+.dark > .return-to-top:hover i {
+    text-shadow: 2px 1px 2px grey;
+    text-decoration: none;
+    color: #393C3D;
+    top: 5px;
+}
+
+.dark {
+    background-color: #1C1C1E;
+}
+
+.dark #searchSpringNav {
+    background-color: #333435;
+}
+/*LandingNav*/
+.dark #LandingNav {
+    background-color: #333435;
+}
+/*================================================ dropdown dm =======================================================*/
+#primary_nav_wrap ul
+{
+    list-style:none;
+    position:relative;
+    float:left;
+    margin:0;
+}
+
+#primary_nav_wrap ul a
+{
+    display:block;
+    padding: 8px;
+}
+
+#primary_nav_wrap ul li
+{
+    position:relative;
+    float:right;
+    margin:0;
+}
+
+#primary_nav_wrap ul li:hover {
+    /*background:#4D39B5;*/
+}
+
+#primary_nav_wrap ul ul {
+    color: white;
+    display:none;
+    position:absolute;
+    top:100%;
+    right:0;
+    background:#3A23AD;
+    padding:0
+}
+
+#primary_nav_wrap ul ul li {
+    float:none;
+    width:150px
+}
+
+#primary_nav_wrap ul ul ul
+{
+    top:0;
+    right:100%
+}
+
+#primary_nav_wrap ul li:hover > ul {
+    display:block
 }
