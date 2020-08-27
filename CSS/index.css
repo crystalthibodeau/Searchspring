@@ -1,5 +1,7 @@
 /*================================================ light styling =====================================================*/
-
+.body{
+    font-family: 'Lato', sans-serif;
+}
 .closed {
     float: right;
     font-size: 1.5rem;
@@ -216,14 +218,19 @@
     border-bottom-right-radius: 35px;
     -webkit-border-top-right-radius: 35px;
 }
-
+#navHeader{
+    color: lightgrey;
+}
+.searchSpring{
+    color: #00CEE1;
+}
 #navHeader, .searchSpring {
     background: none !important;
     border: none;
     text-decoration: none;
     transition: transform .2s ease-in-out;
-    color: lightgrey;
-    font-size: xx-large;
+    font-family: 'Lora', serif;
+    font-weight: bolder;
 }
 
 #navHeader:hover, .searchSpring:hover{
