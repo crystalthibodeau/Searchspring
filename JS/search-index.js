@@ -1,4 +1,10 @@
 // ==========================Submits ajax request for catolog items without search param==============================
+//dropdown sorting option
+//data.sorting.options values
+// <option value="volvo">Volvo</option>
+//     <option value="saab">Saab</option>
+//     <option value="mercedes">Mercedes</option>
+//     <option value="audi">Audi</option>
 
 var searchString;
 searchString = '';
@@ -14,13 +20,12 @@ if (searchParam === null) {
     searchParam = "";
 }
 
-var newUrl = protocol + host + path + query + (query ? '&' : '?') + '?theme';
-var baseURL = protocol + host + path + query + (query ? '&' : '?');
+
 var paginationNumber = 1;
 //selects top and bottom pagination
 var paginationNumbers = document.getElementsByClassName("paginationNumber");
-var themeString = window.location.href.toLowerCase().toString().split("?");
-var string = themeString[2];
+// var themeString = window.location.href.toLowerCase().toString().split("?");
+// var string = themeString[2];
 // console.log("outside if", string);
 var searchButton = document.getElementById("searchSpringNavButton");
 
@@ -43,6 +48,44 @@ if ($('main').hasClass('dark')) {
     $('#checkBox').prop("checked", false)
 }
 
+// ==========================Create sort options=================================
+function createOptions(options){
+    var option = ""
+    for(let i =0; i < options.length; i++){
+        console.log(options);
+        option += '<option value="sort.' + options[i].field + '=' +options[i].direction+'" ' + (options[i].active ? 'selected': "") +'>';
+        option += options[i].label;
+        option +='</option>';
+    }
+    var selectMenu = document.getElementById("options");
+    selectMenu.innerHTML = option;
+    console.log(option);
+    console.log(selectMenu);
+
+}
+// ==========================call sort options=================================
+
+function callOption(){
+    var dropDownVal = document.getElementById("options").value;
+
+    // sort.price =
+    $.ajax("https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + (1) + "&" + dropDownVal ).done(function (data) {
+        paginationNumber = 1;
+        mediaQuery();
+        // Create the cards
+        var ShoppingCard = "";
+        paginationUpdate();
+        Disable(paginationNumber, data.pagination.totalPages);
+        createCards(data, ShoppingCard);//data.results
+
+    });
+
+
+}
+
+var selectForm = document.getElementById("options");
+selectForm.addEventListener("change", callOption);
+
 function onLoad() {
     // searchButton.scrollIntoView();
     $.ajax("https://api.searchspring.net/api/search/search.json?siteId=scmq7n&q=" + searchParam + "&resultsFormat=native&page=" + (1) + "/").done(function (data) {
@@ -52,7 +95,7 @@ function onLoad() {
         var ShoppingCard = "";
         paginationUpdate();
         Disable(paginationNumber, data.pagination.totalPages);
-        createCards(data.results, ShoppingCard);//data.results
+        createCards(data, ShoppingCard);//data.results
     });
 
 }
@@ -74,7 +117,7 @@ function clickHeader() {
         var ShoppingCard = "";
         paginationUpdate();
         Disable(paginationNumber, data.pagination.totalPages);
-        createCards(data.results, ShoppingCard);//data.results
+        createCards(data, ShoppingCard);//data.results
     });
 
 }
@@ -98,7 +141,7 @@ function next() {
 
         var ShoppingCard = "";
 
-        createCards(data.results, ShoppingCard);//data.results
+        createCards(data, ShoppingCard);//data.results
 
     })
 
@@ -118,7 +161,7 @@ function previous() {
 
         var ShoppingCard = "";
 
-        createCards(data.results, ShoppingCard);
+        createCards(data, ShoppingCard);
         // console.log(data.pagination.totalPages);
     })
 
@@ -227,42 +270,44 @@ function modal(results) { //data.results
     $(".modals").html(modal);
 }
 
-function createCards(results, card) { //data.results
+function createCards(data, card) { //data.results
 
     card = "";
-    for (let i = 0; i < results.length; i++) {
+    for (let i = 0; i < data.results.length; i++) {
 
         var msrp = "";
         // product has an “msrp” field
-        if (results[i].msrp != null || results[i].msrp !== undefined || results[i].msrp !== "") {
+        if (data.results[i].msrp != null || data.results[i].msrp !== undefined || data.results[i].msrp !== "") {
 
-            var msrpNum = parseFloat(results[i].msrp);
-            var priceNum = parseFloat(results[i].price);
+            var msrpNum = parseFloat(data.results[i].msrp);
+            var priceNum = parseFloat(data.results[i].price);
             //console.log("msrp", msrpNum + " vs " + priceNum)
 
             if (msrpNum > priceNum) {
-                msrp = '<h4 class="px-1 strike text-muted">' + "$" + results[i].msrp + '</h4>';
+                msrp = '<h4 class="px-1 strike text-muted">' + "$" + data.results[i].msrp + '</h4>';
             }
 
         }
 
         card += '<div class="mb-4 col-12 col-sm-6 col-md-4 col-lg-4">';
         card += '<div class="productCard shadow bg-white rounded">';
-        card += '<img class="card-img-top img-fluid" src="' + results[i].thumbnailImageUrl + '" alt="Card image" />';
+        card += '<img class="card-img-top img-fluid" src="' + data.results[i].thumbnailImageUrl + '" alt="Card image" />';
         card += '<div class="cardBody">';
-        card += '<h4 class="textColor">' + results[i].title + '</h4>';
+        card += '<h4 class="textColor">' + data.results[i].title + '</h4>';
         card += '<div class="d-flex justify-content-center">';
-        card += '<h4 class="textColor px-1">' + "$" + results[i].price + '</h4>'
+        card += '<h4 class="textColor px-1">' + "$" + data.results[i].price + '</h4>'
         card += msrp;
         card += '</div>';
         card += '<small class="text-muted d-flex justify-content-center align-items-center">';
-        card += '<button class="preview px-3" data-toggle="modal" data-target="#ApiModalLong'+i+'" id="' + results[i] + '\">\n' + 'Preview\n' + '</button>';
+        card += '<button class="preview px-3" data-toggle="modal" data-target="#ApiModalLong'+i+'" id="' + data.results[i] + '\">\n' + 'Preview\n' + '</button>';
         card += '</small>';
         card += '</div>';
         card += '</div>';
         card += '</div>';
     }
-    modal(results);
+    modal(data.results);
+
+    createOptions(data.sorting.options);
 
     $(".ShoppingCards").html(card);
 }
